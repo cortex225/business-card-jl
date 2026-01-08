@@ -1,59 +1,92 @@
-
-import React, { useState, useCallback, useMemo, useEffect } from 'react';
+import React, { useState } from 'react';
 import { 
-    Mail, Globe, Linkedin, Github, Download, 
-    Calendar, Share2, QrCode, X, ChevronDown, 
-    ChevronUp, Languages, Lightbulb 
+    Mail, Phone, Globe, Linkedin, Github, Download, MapPin, 
+    Code, Check, Calendar, Share2, QrCode, X, ChevronDown, 
+    ChevronUp, Languages, ArrowRight, Wallet, Lightbulb 
 } from 'lucide-react';
-import { DATA, T } from './constants';
-import { Language } from './types';
-import { ActionButton } from './components/ActionButton';
-import { SocialIcon } from './components/SocialIcon';
 
-const App: React.FC = () => {
-    const [lang, setLang] = useState<Language>('fr');
+const App = () => {
+    const [lang, setLang] = useState<'fr' | 'en'>('fr');
     const [showQR, setShowQR] = useState(false);
     const [showServices, setShowServices] = useState(false);
 
-    // Defensive URL check: Ensure we are not accidentally executing inside a weird context
-    useEffect(() => {
-        const params = new URLSearchParams(window.location.search);
-        if (params.has('onload')) {
-            console.warn('Potential external script injection detected via onload parameter. Ignoring.');
+    // --- DONNÉES DE L'ENTREPRISE ---
+    const DATA = {
+        name: "Déto Jean-Luc Gouaho",
+        company: "JL Digital Services",
+        neq: "2279991246",
+        title: { fr: "Développeur de Solutions Web", en: "Web Solutions Developer" },
+        location: "Granby, Québec",
+        email: "contact@jldigitalservices.com",
+        website: "https://www.jldigitalservices.com",
+        linkedin: "https://linkedin.com",
+        github: "https://github.com",
+        phone: "+15140000000",
+        calendly: "https://calendly.com",
+        stack: ["Création de Sites Web", "Boutique en Ligne", "Logiciels sur mesure", "Applications Mobiles", "Automatisation"],
+        services: {
+            fr: [
+                { name: "Sites Internet & Vitrines", desc: "Un site web moderne et facile à utiliser pour présenter votre entreprise." },
+                { name: "Boutique en Ligne (E-Commerce)", desc: "Vendez vos produits 24h/7j avec une boutique sécurisée et simple à gérer." },
+                { name: "Logiciels & Outils sur Mesure", desc: "Des outils numériques créés spécialement pour simplifier votre travail quotidien." }
+            ],
+            en: [
+                { name: "Websites & Showcases", desc: "Modern and easy-to-use websites to present your business." },
+                { name: "Online Store (E-Commerce)", desc: "Sell your products 24/7 with a secure and easy-to-manage shop." },
+                { name: "Custom Software & Tools", desc: "Digital tools created specifically to simplify your daily work." }
+            ]
         }
-    }, []);
+    };
 
-    // Get a clean URL (strictly origin + pathname)
-    const cleanUrl = useMemo(() => {
-        try {
-            const url = new URL(window.location.href);
-            return url.origin + url.pathname;
-        } catch (e) {
-            return "https://virtual-card-pro.vercel.app/";
+    const t = {
+        fr: {
+            contact: "Me contacter",
+            book: "Prendre RDV (Gratuit)",
+            save: "Sauvegarder ma fiche",
+            wallet: "Google Portefeuille",
+            walletSub: "Carte de visite numérique",
+            portfolio: "Voir mes réalisations",
+            services: "Ce que je peux faire pour vous",
+            openToWork: "DISPONIBLE POUR VOS PROJETS",
+            share: "Partager",
+            scan: "Scannez pour garder le contact",
+            close: "Fermer",
+            walletAlert: "QR Code téléchargé !\n\nPour l'ajouter à Google Portefeuille :\n1. Ouvrez l'app Google Wallet\n2. Cliquez sur 'Ajouter au portefeuille'\n3. Choisissez 'Photo' et sélectionnez cette image."
+        },
+        en: {
+            contact: "Contact Me",
+            book: "Book a Free Call",
+            save: "Save Contact",
+            wallet: "Google Wallet",
+            walletSub: "Digital Business Card",
+            portfolio: "See my work",
+            services: "How I can help you",
+            openToWork: "AVAILABLE FOR PROJECTS",
+            share: "Share",
+            scan: "Scan to keep in touch",
+            close: "Close",
+            walletAlert: "QR Code downloaded!\n\nTo add to Google Wallet:\n1. Open Google Wallet app\n2. Tap 'Add to Wallet'\n3. Choose 'Photo' and select this image."
         }
-    }, []);
+    };
 
-    const handleShare = useCallback(async () => {
+    const handleShare = async () => {
         if (typeof navigator !== 'undefined' && navigator.share) {
             try {
                 await navigator.share({
                     title: DATA.name,
                     text: `${DATA.title[lang]} - ${DATA.company}`,
-                    url: cleanUrl,
+                    url: window.location.href,
                 });
             } catch (err) {
-                // If sharing is cancelled or fails, fallback to QR
-                if ((err as Error).name !== 'AbortError') {
-                    console.error('Share error:', err);
-                    setShowQR(true);
-                }
+                console.log('Erreur de partage:', err);
+                setShowQR(true);
             }
         } else {
             setShowQR(true);
         }
-    }, [lang, cleanUrl]);
+    };
 
-    const downloadVCard = useCallback(() => {
+    const downloadVCard = () => {
         const vCardContent = `BEGIN:VCARD
 VERSION:3.0
 FN:${DATA.name}
@@ -71,22 +104,47 @@ END:VCARD`;
         const url = URL.createObjectURL(blob);
         const link = document.createElement("a");
         link.href = url;
-        link.setAttribute("download", `${DATA.name.replace(/\s+/g, '_')}_Contact.vcf`);
+        link.setAttribute("download", "JL_Digital_Contact.vcf");
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
         URL.revokeObjectURL(url);
-    }, [lang]);
+    };
+
+    const handleGoogleWallet = async () => {
+        const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${encodeURIComponent(window.location.href)}&color=000000&bgcolor=ffffff&format=png&margin=20`;
+        
+        try {
+            const response = await fetch(qrUrl);
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+            
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = "JL-Digital-Wallet-QR.png";
+            document.body.appendChild(link);
+            link.click();
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(link);
+            
+            setTimeout(() => {
+                alert(t[lang].walletAlert);
+            }, 500);
+
+        } catch (error) {
+            console.error('Erreur téléchargement QR', error);
+            window.open(qrUrl, '_blank');
+        }
+    };
 
     return (
         <div className="min-h-screen w-full flex items-center justify-center p-4 bg-slate-50 font-sans relative overflow-hidden">
             
-            {/* Background Animation */}
             <div className="absolute inset-0 animated-bg z-0 pointer-events-none"></div>
 
             <div className="w-full max-w-[380px] mx-auto z-10 relative">
                 
-                {/* Header Toolbar */}
+                {/* Barre d'outils supérieure */}
                 <div className="flex justify-between items-center mb-4 px-2">
                      <button 
                         onClick={() => setLang(l => l === 'fr' ? 'en' : 'fr')}
@@ -98,7 +156,7 @@ END:VCARD`;
                     <button 
                         onClick={handleShare}
                         className="bg-white/60 backdrop-blur-md p-2 rounded-full shadow-sm border border-white text-slate-600 hover:text-indigo-600 hover:bg-white transition-colors"
-                        aria-label="Share Contact"
+                        aria-label="Share"
                     >
                         <Share2 size={18} />
                     </button>
@@ -106,18 +164,18 @@ END:VCARD`;
 
                 <div className="glass-card rounded-[2.5rem] p-6 pb-8 relative overflow-hidden transition-all duration-300">
                     
-                    {/* Availability Badge */}
+                    {/* Badge Disponibilité */}
                     <div className="flex justify-center mb-6">
                         <div className="inline-flex items-center gap-2 bg-emerald-50 border border-emerald-100 px-3 py-1 rounded-full shadow-sm">
                             <span className="relative flex h-2 w-2">
                               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                             </span>
-                            <span className="text-[10px] font-bold text-emerald-700 tracking-wide uppercase">{T[lang].openToWork}</span>
+                            <span className="text-[10px] font-bold text-emerald-700 tracking-wide uppercase">{t[lang].openToWork}</span>
                         </div>
                     </div>
 
-                    {/* Identity Section */}
+                    {/* Identité */}
                     <div className="text-center">
                         <div className="relative inline-block mb-4">
                             <div className="w-24 h-24 bg-gradient-to-br from-slate-800 to-indigo-900 rounded-full flex items-center justify-center text-white text-2xl font-bold shadow-xl border-4 border-white mx-auto">
@@ -133,7 +191,7 @@ END:VCARD`;
                         <p className="text-slate-500 text-sm font-medium">{DATA.title[lang]}</p>
                     </div>
 
-                    {/* Keywords Chips */}
+                    {/* Tags Services */}
                     <div className="mt-6 mb-6">
                         <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide justify-center flex-wrap">
                             {DATA.stack.map((tech, index) => (
@@ -144,25 +202,25 @@ END:VCARD`;
                         </div>
                     </div>
 
-                    {/* Primary Grid Actions */}
+                    {/* Actions Principales (Grille) */}
                     <div className="grid grid-cols-2 gap-3 mb-4">
                         <button 
                             onClick={() => window.location.href = `mailto:${DATA.email}`}
                             className="bg-slate-900 hover:bg-slate-800 text-white py-3.5 px-4 rounded-2xl flex items-center justify-center gap-2 transition-all active:scale-95 shadow-lg shadow-slate-900/10"
                         >
                             <Mail size={18} />
-                            <span className="text-sm font-medium">{T[lang].contact}</span>
+                            <span className="text-sm font-medium">{t[lang].contact}</span>
                         </button>
                         <button 
                             onClick={() => window.open(DATA.calendly, '_blank', 'noopener,noreferrer')}
                             className="bg-indigo-600 hover:bg-indigo-500 text-white py-3.5 px-4 rounded-2xl flex items-center justify-center gap-2 transition-all active:scale-95 shadow-lg shadow-indigo-600/20"
                         >
                             <Calendar size={18} />
-                            <span className="text-sm font-medium">{T[lang].book}</span>
+                            <span className="text-sm font-medium">{t[lang].book}</span>
                         </button>
                     </div>
 
-                    {/* Services Accordion */}
+                    {/* Services (Accordeon) */}
                     <div className="mb-4">
                         <button 
                             onClick={() => setShowServices(!showServices)}
@@ -172,7 +230,7 @@ END:VCARD`;
                                 <div className="p-1.5 bg-indigo-50 text-indigo-600 rounded-lg">
                                     <Lightbulb size={16} />
                                 </div>
-                                {T[lang].services}
+                                {t[lang].services}
                             </div>
                             {showServices ? <ChevronUp size={16} className="text-slate-400"/> : <ChevronDown size={16} className="text-slate-400"/>}
                         </button>
@@ -189,24 +247,30 @@ END:VCARD`;
                         )}
                     </div>
 
-                    {/* Secondary Action List */}
+                    {/* Liste secondaire */}
                     <div className="space-y-3">
+                        <ActionButton 
+                            onClick={handleGoogleWallet} 
+                            icon={<Wallet size={18} />} 
+                            text={t[lang].wallet} 
+                            subtext={t[lang].walletSub}
+                        />
                         <ActionButton 
                             onClick={downloadVCard} 
                             icon={<Download size={18} />} 
-                            text={T[lang].save} 
+                            text={t[lang].save} 
                             subtext=".vcf"
                         />
                          <ActionButton 
                             onClick={() => window.open(DATA.website, '_blank', 'noopener,noreferrer')}
                             icon={<Globe size={18} />} 
-                            text={T[lang].portfolio}
+                            text={t[lang].portfolio}
                             subtext="jldigitalservices.com"
                             highlight
                         />
                     </div>
 
-                    {/* Social Footer */}
+                    {/* Footer Social */}
                     <div className="mt-8 pt-6 border-t border-slate-200/50 flex justify-center gap-4">
                         <SocialIcon href={DATA.linkedin} icon={<Linkedin size={20} />} />
                         <SocialIcon href={DATA.github} icon={<Github size={20} />} />
@@ -228,7 +292,7 @@ END:VCARD`;
                 </div>
             </div>
 
-            {/* QR Code Modal Overlay */}
+            {/* Modal QR Code */}
             {showQR && (
                 <div className="fixed inset-0 z-50 bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-200">
                     <div className="bg-white p-6 rounded-3xl shadow-2xl w-full max-w-xs relative text-center">
@@ -244,13 +308,13 @@ END:VCARD`;
                             <div className="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center mx-auto text-indigo-600 mb-3">
                                 <QrCode size={24} />
                             </div>
-                            <h3 className="font-bold text-slate-800 text-lg">{T[lang].scan}</h3>
+                            <h3 className="font-bold text-slate-800 text-lg">{t[lang].scan}</h3>
                             <p className="text-xs text-slate-500 mt-1">{DATA.name}</p>
                         </div>
 
                         <div className="bg-slate-50 p-4 rounded-xl inline-block mb-4 border border-slate-100">
                             <img 
-                                src={`https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(cleanUrl)}&color=1e293b&bgcolor=f8fafc`} 
+                                src={`https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(window.location.href)}&color=1e293b&bgcolor=f8fafc`}
                                 alt="QR Code" 
                                 className="w-48 h-48 mix-blend-multiply"
                                 loading="lazy"
@@ -261,7 +325,7 @@ END:VCARD`;
                             onClick={() => setShowQR(false)}
                             className="w-full py-3 rounded-xl bg-slate-100 text-slate-600 font-semibold text-sm hover:bg-slate-200 transition-colors"
                         >
-                            {T[lang].close}
+                            {t[lang].close}
                         </button>
                     </div>
                 </div>
@@ -269,5 +333,47 @@ END:VCARD`;
         </div>
     );
 };
+
+interface ActionButtonProps {
+    onClick: () => void;
+    icon: React.ReactNode;
+    text: string;
+    subtext?: string;
+    highlight?: boolean;
+}
+
+const ActionButton: React.FC<ActionButtonProps> = ({ onClick, icon, text, subtext, highlight }) => (
+    <button 
+        onClick={onClick} 
+        className={`w-full group p-3 rounded-2xl flex items-center justify-between transition-all border shadow-sm ${highlight ? 'bg-indigo-50 border-indigo-100 hover:bg-indigo-100' : 'bg-white/60 hover:bg-white border-white/60'}`}
+    >
+        <div className="flex items-center gap-3">
+            <div className={`p-2 rounded-xl transition-colors ${highlight ? 'bg-white text-indigo-600' : 'bg-slate-100 text-slate-600 group-hover:bg-slate-200'}`}>
+                {icon}
+            </div>
+            <div className="text-left">
+                <p className={`text-sm font-semibold ${highlight ? 'text-indigo-900' : 'text-slate-800'}`}>{text}</p>
+                {subtext && <p className={`text-[10px] ${highlight ? 'text-indigo-400' : 'text-slate-400'}`}>{subtext}</p>}
+            </div>
+        </div>
+        <ArrowRight size={14} className={`opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all ${highlight ? 'text-indigo-400' : 'text-slate-400'}`} />
+    </button>
+);
+
+interface SocialIconProps {
+    href: string;
+    icon: React.ReactNode;
+}
+
+const SocialIcon: React.FC<SocialIconProps> = ({ href, icon }) => (
+    <a 
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-slate-400 hover:text-indigo-600 hover:scale-110 transition-all p-2"
+    >
+        {icon}
+    </a>
+);
 
 export default App;
