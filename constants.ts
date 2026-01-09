@@ -15,6 +15,7 @@ export const DATA: AppData = {
   linkedin: "https://linkedin.com/in/jlgouaho/",
   github: "https://github.com/cortex225",
   x: "https://x.com/jlgouaho",
+  whatsapp: "https://wa.me/14505211098",
   phone: "+14505211098",
   calendly: "https://cal.com/jean-luc-gouaho-zgnemm/jl-digital-services-call",
   stack: [

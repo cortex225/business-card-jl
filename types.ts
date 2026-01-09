@@ -39,6 +39,7 @@ export interface AppData {
   linkedin: string;
   github: string;
   x: string;
+  whatsapp: string;
   phone: string;
   calendly: string;
   stack: string[];
