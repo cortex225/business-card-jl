@@ -1,0 +1,40 @@
+{
+  "name": "JL Digital Services - Carte de visite",
+  "short_name": "JL Digital",
+  "description": "Développeur web freelance à Granby, Québec. Création de sites web, boutiques en ligne et automatisation.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f8fafc",
+  "theme_color": "#4f46e5",
+  "lang": "fr-CA",
+  "dir": "ltr",
+  "categories": ["business", "productivity", "utilities"],
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/img/avatar.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Prendre rendez-vous",
+      "short_name": "RDV",
+      "url": "/?action=book"
+    },
+    {
+      "name": "Me contacter",
+      "short_name": "Contact",
+      "url": "mailto:jl.gouaho@gmail.com"
+    }
+  ]
+}

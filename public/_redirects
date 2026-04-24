@@ -1,4 +1,6 @@
-# Netlify redirects - serve sitemap and robots.txt before SPA fallback
-/sitemap.xml  /sitemap.xml  200
-/robots.txt   /robots.txt   200
-/*            /index.html   200
+# Netlify redirects - serve static SEO/PWA assets before SPA fallback
+/sitemap.xml           /sitemap.xml           200
+/robots.txt            /robots.txt            200
+/manifest.webmanifest  /manifest.webmanifest  200
+/favicon.svg           /favicon.svg           200
+/*                     /index.html            200
