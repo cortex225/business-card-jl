@@ -19,6 +19,10 @@ import {
   Cpu,
   CheckCircle,
   Twitter,
+  ShieldCheck,
+  ChevronDown,
+  Sparkles,
+  HelpCircle,
 } from "lucide-react";
 import { DATA, T } from "./constants";
 import { ActionButton } from "./components/ActionButton";
@@ -31,6 +35,7 @@ const App = () => {
   const [lang, setLang] = useState<Language>("fr");
   const [showQR, setShowQR] = useState(false);
   const [showCal, setShowCal] = useState(false);
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   const handleShare = async () => {
     if (typeof navigator !== "undefined" && navigator.share) {
@@ -132,13 +137,17 @@ END:VCARD`;
             <div className="flex justify-between items-center mb-6">
               <button
                 onClick={() => setLang((l) => (l === "fr" ? "en" : "fr"))}
-                className="bg-white/60 backdrop-blur-md px-3 py-2 rounded-full shadow-sm border border-white text-xs font-bold text-slate-600 flex items-center gap-1.5 hover:bg-white transition-colors">
-                <Languages size={14} /> {lang.toUpperCase()}
+                aria-label={lang === "fr" ? "Switch to English" : "Passer en français"}
+                title={lang === "fr" ? "Switch to English" : "Passer en français"}
+                className="bg-white/60 backdrop-blur-md px-3 py-2 rounded-full shadow-sm border border-white text-xs font-bold text-slate-600 flex items-center gap-1.5 hover:bg-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
+                <Languages size={14} aria-hidden="true" /> {lang.toUpperCase()}
               </button>
               <button
                 onClick={handleShare}
-                className="bg-white/60 backdrop-blur-md p-2 rounded-full shadow-sm border border-white text-slate-600 hover:text-indigo-600 hover:bg-white transition-colors">
-                <Share2 size={18} />
+                aria-label={T[lang].share}
+                title={T[lang].share}
+                className="bg-white/60 backdrop-blur-md p-2 rounded-full shadow-sm border border-white text-slate-600 hover:text-indigo-600 hover:bg-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
+                <Share2 size={18} aria-hidden="true" />
               </button>
             </div>
 
@@ -161,11 +170,15 @@ END:VCARD`;
                 <div className="w-32 h-32 rounded-full shadow-2xl border-[6px] border-white mx-auto overflow-hidden bg-slate-100">
                   <img
                     src={DATA.avatar}
-                    alt={DATA.name}
+                    alt={`${DATA.name} — ${DATA.title[lang]}`}
+                    width={128}
+                    height={128}
+                    loading="eager"
+                    decoding="async"
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="absolute bottom-1 right-1 bg-white p-2 rounded-full shadow-lg">
+                <div className="absolute bottom-1 right-1 bg-white p-2 rounded-full shadow-lg" aria-hidden="true">
                   <Lightbulb size={20} className="text-indigo-600" />
                 </div>
               </div>
@@ -236,29 +249,38 @@ END:VCARD`;
             </div>
 
             {/* Social Footer */}
-            <div className="pt-6 border-t border-slate-200/50 flex justify-center gap-6">
-              <SocialIcon href={DATA.linkedin} icon={<Linkedin size={22} />} />
-              <SocialIcon href={DATA.github} icon={<Github size={22} />} />
-              <SocialIcon href={DATA.x} icon={<Twitter size={22} />} />
+            <div className="pt-6 border-t border-slate-200/50 flex justify-center gap-6" role="list" aria-label="Réseaux sociaux">
+              <SocialIcon href={DATA.linkedin} icon={<Linkedin size={22} />} label="LinkedIn" />
+              <SocialIcon href={DATA.github} icon={<Github size={22} />} label="GitHub" />
+              <SocialIcon href={DATA.x} icon={<Twitter size={22} />} label="X (Twitter)" />
               <SocialIcon
                 href={DATA.whatsapp}
                 icon={<WhatsAppIcon size={22} />}
+                label="WhatsApp"
               />
               <button
                 onClick={() => setShowQR(true)}
-                className="text-slate-400 hover:text-indigo-600 transition-colors p-2 hover:scale-110">
-                <QrCode size={22} />
+                aria-label={T[lang].scan}
+                title={T[lang].scan}
+                className="text-slate-400 hover:text-indigo-600 transition-colors p-2 hover:scale-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 rounded-full">
+                <QrCode size={22} aria-hidden="true" />
               </button>
+            </div>
+
+            {/* Trust Badge — NEQ (Quebec registered business) */}
+            <div className="mt-6 flex items-center justify-center gap-2 text-[11px] text-slate-500">
+              <ShieldCheck size={14} className="text-emerald-600" aria-hidden="true" />
+              <span>{T[lang].trustNeq} · NEQ {DATA.neq}</span>
             </div>
           </div>
         </aside>
 
         {/* --- RIGHT COLUMN: DETAILED CONTENT --- */}
-        <main className="flex-1 w-full space-y-12 lg:space-y-20 lg:pt-8 pb-12">
+        <main id="main-content" className="flex-1 w-full space-y-12 lg:space-y-20 lg:pt-8 pb-12">
           {/* About Section */}
-          <section className="bg-white/40 backdrop-blur-sm rounded-[2rem] p-6 md:p-10 border border-white shadow-sm">
-            <h2 className="text-2xl font-bold text-slate-800 mb-4 flex items-center gap-3">
-              <span className="bg-indigo-100 text-indigo-600 p-2 rounded-xl">
+          <section className="bg-white/40 backdrop-blur-sm rounded-[2rem] p-6 md:p-10 border border-white shadow-sm" aria-labelledby="about-heading">
+            <h2 id="about-heading" className="text-2xl font-bold text-slate-800 mb-4 flex items-center gap-3">
+              <span className="bg-indigo-100 text-indigo-600 p-2 rounded-xl" aria-hidden="true">
                 <Lightbulb size={24} />
               </span>
               {T[lang].about}
@@ -268,9 +290,22 @@ END:VCARD`;
             </p>
           </section>
 
+          {/* Stats — social proof + authority signals for AI citation */}
+          <section aria-labelledby="stats-heading">
+            <h2 id="stats-heading" className="sr-only">{T[lang].stats}</h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {DATA.stats[lang].map((s, i) => (
+                <div key={i} className="bg-white/70 backdrop-blur-sm rounded-2xl p-5 border border-white text-center shadow-sm">
+                  <div className="text-3xl md:text-4xl font-extrabold text-indigo-600 leading-none mb-1">{s.value}</div>
+                  <div className="text-xs md:text-sm text-slate-500 font-medium">{s.label}</div>
+                </div>
+              ))}
+            </div>
+          </section>
+
           {/* Why Choose Us (Stats/Features) */}
-          <section>
-            <h2 className="text-2xl font-bold text-slate-800 mb-8 ml-4">
+          <section aria-labelledby="why-heading">
+            <h2 id="why-heading" className="text-2xl font-bold text-slate-800 mb-8 ml-4">
               {T[lang].whyUs}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -278,7 +313,7 @@ END:VCARD`;
                 <div
                   key={i}
                   className="bg-white/60 p-6 rounded-3xl border border-white shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
-                  <div className="bg-emerald-50 w-12 h-12 rounded-2xl flex items-center justify-center text-emerald-600 mb-4">
+                  <div className="bg-emerald-50 w-12 h-12 rounded-2xl flex items-center justify-center text-emerald-600 mb-4" aria-hidden="true">
                     {getIcon(item.icon)}
                   </div>
                   <h3 className="font-bold text-slate-800 mb-2">
@@ -292,9 +327,31 @@ END:VCARD`;
             </div>
           </section>
 
+          {/* Expertise — entity-rich, citation-friendly block for AI engines */}
+          <section aria-labelledby="expertise-heading">
+            <h2 id="expertise-heading" className="text-2xl font-bold text-slate-800 mb-8 ml-4 flex items-center gap-3">
+              <Sparkles size={22} className="text-indigo-600" aria-hidden="true" />
+              {T[lang].expertise}
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {DATA.expertise[lang].map((group, i) => (
+                <div key={i} className="bg-white/60 p-6 rounded-3xl border border-white shadow-sm">
+                  <h3 className="font-bold text-slate-800 mb-3">{group.title}</h3>
+                  <ul className="flex flex-wrap gap-2">
+                    {group.items.map((it, j) => (
+                      <li key={j} className="px-3 py-1 rounded-lg bg-indigo-50 text-indigo-700 text-xs font-semibold border border-indigo-100">
+                        {it}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </section>
+
           {/* Services */}
-          <section>
-            <h2 className="text-2xl font-bold text-slate-800 mb-8 ml-4">
+          <section aria-labelledby="services-heading">
+            <h2 id="services-heading" className="text-2xl font-bold text-slate-800 mb-8 ml-4">
               {T[lang].services}
             </h2>
             <div className="space-y-4">
@@ -337,10 +394,10 @@ END:VCARD`;
           </section>
 
           {/* Process */}
-          <section className="bg-slate-900 text-slate-100 rounded-[2.5rem] p-8 md:p-12 overflow-hidden relative">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500 rounded-full blur-[100px] opacity-20 pointer-events-none"></div>
+          <section className="bg-slate-900 text-slate-100 rounded-[2.5rem] p-8 md:p-12 overflow-hidden relative" aria-labelledby="process-heading">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500 rounded-full blur-[100px] opacity-20 pointer-events-none" aria-hidden="true"></div>
 
-            <h2 className="text-2xl font-bold text-white mb-10 relative z-10">
+            <h2 id="process-heading" className="text-2xl font-bold text-white mb-10 relative z-10">
               {T[lang].ourProcess}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
@@ -364,33 +421,72 @@ END:VCARD`;
           </section>
 
           {/* Testimonials */}
-          <section>
-            <h2 className="text-2xl font-bold text-slate-800 mb-8 ml-4">
+          <section aria-labelledby="testimonials-heading">
+            <h2 id="testimonials-heading" className="text-2xl font-bold text-slate-800 mb-8 ml-4">
               {T[lang].testimonials}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {DATA.testimonials[lang].map((t, i) => (
-                <div
+                <figure
                   key={i}
                   className="bg-white/50 p-6 rounded-3xl border border-white/60">
-                  <div className="flex gap-1 text-amber-400 mb-3">
-                    {[...Array(5)].map((_, i) => (
-                      <span key={i}>★</span>
+                  <div className="flex gap-1 text-amber-400 mb-3" aria-label="5 étoiles sur 5">
+                    {[...Array(5)].map((_, k) => (
+                      <span key={k} aria-hidden="true">★</span>
                     ))}
                   </div>
-                  <p className="text-slate-700 italic mb-4 text-sm leading-relaxed">
+                  <blockquote className="text-slate-700 italic mb-4 text-sm leading-relaxed">
                     "{t.text}"
-                  </p>
-                  <div>
+                  </blockquote>
+                  <figcaption>
                     <div className="font-bold text-slate-900 text-sm">
                       {t.name}
                     </div>
                     <div className="text-xs text-slate-500">
                       {t.role}, {t.company}
                     </div>
-                  </div>
-                </div>
+                  </figcaption>
+                </figure>
               ))}
+            </div>
+          </section>
+
+          {/* FAQ — visible section mirroring FAQPage JSON-LD for rich results & AI citation */}
+          <section aria-labelledby="faq-heading">
+            <h2 id="faq-heading" className="text-2xl font-bold text-slate-800 mb-8 ml-4 flex items-center gap-3">
+              <HelpCircle size={22} className="text-indigo-600" aria-hidden="true" />
+              {T[lang].faq}
+            </h2>
+            <div className="space-y-3">
+              {DATA.faq[lang].map((item, i) => {
+                const isOpen = openFaq === i;
+                return (
+                  <div key={i} className="bg-white/70 rounded-2xl border border-white shadow-sm overflow-hidden">
+                    <button
+                      type="button"
+                      onClick={() => setOpenFaq(isOpen ? null : i)}
+                      aria-expanded={isOpen}
+                      aria-controls={`faq-panel-${i}`}
+                      id={`faq-trigger-${i}`}
+                      className="w-full text-left flex items-center justify-between gap-4 p-5 font-semibold text-slate-800 hover:bg-white/90 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
+                      <span>{item.q}</span>
+                      <ChevronDown
+                        size={20}
+                        className={`text-slate-400 shrink-0 transition-transform ${isOpen ? "rotate-180" : ""}`}
+                        aria-hidden="true"
+                      />
+                    </button>
+                    <div
+                      id={`faq-panel-${i}`}
+                      role="region"
+                      aria-labelledby={`faq-trigger-${i}`}
+                      hidden={!isOpen}
+                      className="px-5 pb-5 text-slate-600 text-sm leading-relaxed">
+                      {item.a}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </section>
 
@@ -398,11 +494,12 @@ END:VCARD`;
           <div className="text-center py-12">
             <button
               onClick={() => setShowCal(true)}
-              className="bg-indigo-600 hover:bg-indigo-500 text-white text-lg font-bold py-5 px-10 rounded-full shadow-2xl shadow-indigo-500/30 hover:shadow-indigo-500/40 hover:-translate-y-1 transition-all">
+              aria-label={T[lang].book}
+              className="bg-indigo-600 hover:bg-indigo-500 text-white text-lg font-bold py-5 px-10 rounded-full shadow-2xl shadow-indigo-500/30 hover:shadow-indigo-500/40 hover:-translate-y-1 transition-all focus:outline-none focus-visible:ring-4 focus-visible:ring-indigo-300">
               {T[lang].book}
             </button>
             <p className="mt-4 text-slate-500 text-sm">
-              {T[lang].rights} © {new Date().getFullYear()} {DATA.company}
+              {T[lang].rights} © {new Date().getFullYear()} {DATA.company} · NEQ {DATA.neq}
             </p>
           </div>
         </main>
@@ -410,19 +507,26 @@ END:VCARD`;
 
       {/* QR Code Modal */}
       {showQR && (
-        <div className="fixed inset-0 z-50 bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-200">
+        <div
+          className="fixed inset-0 z-50 bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-200"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="qr-title"
+          onClick={(e) => { if (e.target === e.currentTarget) setShowQR(false); }}
+          onKeyDown={(e) => { if (e.key === "Escape") setShowQR(false); }}>
           <div className="bg-white p-6 rounded-3xl shadow-2xl w-full max-w-xs relative text-center">
             <button
               onClick={() => setShowQR(false)}
-              className="absolute top-4 right-4 text-slate-400 hover:text-slate-800">
-              <X size={24} />
+              aria-label={T[lang].close}
+              className="absolute top-4 right-4 text-slate-400 hover:text-slate-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 rounded">
+              <X size={24} aria-hidden="true" />
             </button>
 
             <div className="mb-4 mt-2">
               <div className="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center mx-auto text-indigo-600 mb-3">
                 <QrCode size={24} />
               </div>
-              <h3 className="font-bold text-slate-800 text-lg">
+              <h3 id="qr-title" className="font-bold text-slate-800 text-lg">
                 {T[lang].scan}
               </h3>
               <p className="text-xs text-slate-500 mt-1">{DATA.name}</p>

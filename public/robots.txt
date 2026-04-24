@@ -1,49 +1,98 @@
 # robots.txt for JL Digital Services
 # https://buisiness.jlgouaho.com
 
-# Allow all search engines
+# Default: allow all traditional search engines
 User-agent: *
 Allow: /
 
 # Sitemap location
 Sitemap: https://buisiness.jlgouaho.com/sitemap.xml
 
-# Google specific
+# Traditional search engines
 User-agent: Googlebot
 Allow: /
 Crawl-delay: 1
 
-# Bing specific
+User-agent: Googlebot-Image
+Allow: /
+
 User-agent: Bingbot
 Allow: /
 Crawl-delay: 1
 
-# DuckDuckGo
 User-agent: DuckDuckBot
 Allow: /
 
-# Yandex (for international reach)
 User-agent: Yandex
 Allow: /
 Crawl-delay: 2
 
-# Baidu (for international reach)
 User-agent: Baiduspider
 Allow: /
 Crawl-delay: 2
 
-# Block AI training bots (optional - protects content)
+# ---------------------------------------------------------------------------
+# GEO (Generative Engine Optimization)
+# Explicitly ALLOW AI search crawlers so the business card can be cited
+# when prospects ask ChatGPT / Perplexity / Claude / Gemini / Copilot for
+# a freelance web developer in Granby, Estrie, Quebec, Canada.
+# ---------------------------------------------------------------------------
+
+# OpenAI — SearchGPT / ChatGPT browsing / training
 User-agent: GPTBot
-Disallow: /
+Allow: /
 
 User-agent: ChatGPT-User
-Disallow: /
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+# Anthropic — Claude
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# Google Gemini / Vertex / AI Overviews
+User-agent: Google-Extended
+Allow: /
+
+# Microsoft Copilot
+User-agent: cohere-ai
+Allow: /
+
+# Apple Intelligence
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# You.com / Common Crawl (used by many LLMs)
+User-agent: YouBot
+Allow: /
 
 User-agent: CCBot
-Disallow: /
+Allow: /
 
-User-agent: anthropic-ai
-Disallow: /
+# Meta AI
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
 
 # Host directive
 Host: https://buisiness.jlgouaho.com

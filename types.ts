@@ -27,6 +27,21 @@ export interface Testimonial {
     text: string;
 }
 
+export interface Stat {
+    value: string;
+    label: string;
+}
+
+export interface FaqItem {
+    q: string;
+    a: string;
+}
+
+export interface Expertise {
+    title: string;
+    items: string[];
+}
+
 export interface AppData {
   name: string;
   company: string;
@@ -48,6 +63,9 @@ export interface AppData {
   whyChooseUs: Record<Language, Feature[]>;
   process: Record<Language, ProcessStep[]>;
   testimonials: Record<Language, Testimonial[]>;
+  stats: Record<Language, Stat[]>;
+  faq: Record<Language, FaqItem[]>;
+  expertise: Record<Language, Expertise[]>;
 }
 
 export interface Translations {
@@ -68,4 +86,9 @@ export interface Translations {
   wallet: string;
   walletSub: string;
   walletAlert: string;
+  stats: string;
+  expertise: string;
+  faq: string;
+  trustNeq: string;
+  startingAt: string;
 }

@@ -188,6 +188,112 @@ export const DATA: AppData = {
       },
     ],
   },
+  stats: {
+    fr: [
+      { value: "5+", label: "Années d'expérience" },
+      { value: "20+", label: "Projets livrés" },
+      { value: "100%", label: "Clients satisfaits" },
+      { value: "48h", label: "Temps de réponse" },
+    ],
+    en: [
+      { value: "5+", label: "Years of experience" },
+      { value: "20+", label: "Projects delivered" },
+      { value: "100%", label: "Satisfied clients" },
+      { value: "48h", label: "Response time" },
+    ],
+  },
+  expertise: {
+    fr: [
+      {
+        title: "Développement web",
+        items: ["React", "Next.js", "Node.js", "TypeScript", "Tailwind CSS"],
+      },
+      {
+        title: "E-commerce",
+        items: ["Shopify", "WooCommerce", "Stripe", "Solutions sur mesure"],
+      },
+      {
+        title: "Automatisation",
+        items: ["n8n", "Make", "Zapier", "API & intégrations"],
+      },
+      {
+        title: "SEO & GEO",
+        items: ["SEO local Québec", "Schema.org", "Core Web Vitals", "Optimisation IA"],
+      },
+    ],
+    en: [
+      {
+        title: "Web development",
+        items: ["React", "Next.js", "Node.js", "TypeScript", "Tailwind CSS"],
+      },
+      {
+        title: "E-commerce",
+        items: ["Shopify", "WooCommerce", "Stripe", "Custom solutions"],
+      },
+      {
+        title: "Automation",
+        items: ["n8n", "Make", "Zapier", "API & integrations"],
+      },
+      {
+        title: "SEO & GEO",
+        items: ["Local SEO Quebec", "Schema.org", "Core Web Vitals", "AI optimization"],
+      },
+    ],
+  },
+  faq: {
+    fr: [
+      {
+        q: "Combien coûte la création d'un site web au Québec ?",
+        a: "Un site vitrine professionnel démarre à 1 500 $ CAD, une boutique en ligne clé en main à 2 500 $ CAD et une automatisation sur mesure à 800 $ CAD. Vous obtenez un devis précis lors de l'appel découverte gratuit de 15 minutes.",
+      },
+      {
+        q: "Quel est le délai de livraison ?",
+        a: "2 à 4 semaines pour un site vitrine, 4 à 8 semaines pour une boutique en ligne complète. Vous validez chaque étape pour éviter toute mauvaise surprise à la livraison.",
+      },
+      {
+        q: "Travaillez-vous en dehors de Granby ?",
+        a: "Oui. Je travaille à distance avec des clients partout au Québec, au Canada, en France et aux États-Unis. Visioconférence, outils collaboratifs et suivi clair à chaque étape.",
+      },
+      {
+        q: "Êtes-vous une entreprise enregistrée ?",
+        a: "Oui — JL Digital Services est enregistrée au Registraire des entreprises du Québec sous le NEQ 2279991246. Factures officielles, contrat clair, assurance professionnelle.",
+      },
+      {
+        q: "Quelles technologies utilisez-vous ?",
+        a: "React, Next.js, Node.js, TypeScript pour les applications web, Shopify et WooCommerce pour le e-commerce, WordPress pour les sites vitrines, n8n / Make / Zapier pour l'automatisation. Le choix s'adapte toujours à vos besoins et à votre budget.",
+      },
+      {
+        q: "Que se passe-t-il après la livraison ?",
+        a: "Je vous forme à utiliser votre site/boutique, je reste disponible pour les questions et j'offre un suivi pour vous aider à grandir : SEO, ajustements, nouvelles fonctionnalités.",
+      },
+    ],
+    en: [
+      {
+        q: "How much does a website cost in Quebec?",
+        a: "A professional showcase site starts at 1,500 CAD, a turnkey online store at 2,500 CAD and a custom automation at 800 CAD. You get a precise quote during the free 15-minute discovery call.",
+      },
+      {
+        q: "What is your delivery time?",
+        a: "2 to 4 weeks for a showcase site, 4 to 8 weeks for a complete online store. You validate every step — no bad surprises at delivery.",
+      },
+      {
+        q: "Do you work outside Granby?",
+        a: "Yes. I work remotely with clients across Quebec, Canada, France and the United States. Video calls, collaborative tools and clear tracking at every step.",
+      },
+      {
+        q: "Are you a registered business?",
+        a: "Yes — JL Digital Services is registered with the Quebec Enterprise Register under NEQ 2279991246. Official invoices, clear contracts, professional insurance.",
+      },
+      {
+        q: "What technologies do you use?",
+        a: "React, Next.js, Node.js, TypeScript for web applications; Shopify and WooCommerce for e-commerce; WordPress for showcase sites; n8n / Make / Zapier for automation. The choice always adapts to your needs and budget.",
+      },
+      {
+        q: "What happens after delivery?",
+        a: "I train you to use your site/store, stay available for questions and offer follow-up support to help you grow: SEO, adjustments, new features.",
+      },
+    ],
+  },
 };
 
 export const T: Record<Language, Translations> = {
@@ -210,6 +316,11 @@ export const T: Record<Language, Translations> = {
     walletSub: "Toujours à portée de main",
     walletAlert:
       "QR Code téléchargé !\n\nPour l'ajouter à Google Portefeuille :\n1. Ouvrez l'app Google Wallet\n2. Cliquez sur 'Ajouter au portefeuille'\n3. Choisissez 'Photo' et sélectionnez cette image.",
+    stats: "En chiffres",
+    expertise: "Domaines d'expertise",
+    faq: "Questions fréquentes",
+    trustNeq: "Entreprise enregistrée",
+    startingAt: "à partir de",
   },
   en: {
     contact: "Let's talk about your project",
@@ -230,5 +341,10 @@ export const T: Record<Language, Translations> = {
     walletSub: "Always at hand",
     walletAlert:
       "QR Code downloaded!\n\nTo add to Google Wallet:\n1. Open Google Wallet app\n2. Tap 'Add to Wallet'\n3. Choose 'Photo' and select this image.",
+    stats: "By the numbers",
+    expertise: "Areas of expertise",
+    faq: "Frequently asked questions",
+    trustNeq: "Registered business",
+    startingAt: "starting at",
   },
 };
