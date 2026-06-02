@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import QRCode from "qrcode";
 import {
   Mail,
   Calendar,
@@ -36,6 +37,35 @@ const App = () => {
   const [showQR, setShowQR] = useState(false);
   const [showCal, setShowCal] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [qrCodeDataUrl, setQrCodeDataUrl] = useState<string>("");
+
+  const cardUrl =
+    typeof window !== "undefined" ? window.location.href : DATA.website;
+
+  useEffect(() => {
+    let isMounted = true;
+
+    QRCode.toDataURL(cardUrl, {
+      color: {
+        dark: "#1e293b",
+        light: "#f8fafc",
+      },
+      errorCorrectionLevel: "M",
+      margin: 2,
+      scale: 8,
+      width: 250,
+    })
+      .then((url) => {
+        if (isMounted) setQrCodeDataUrl(url);
+      })
+      .catch((error) => {
+        console.error("Error generating QR code", error);
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [cardUrl]);
 
   const handleShare = async () => {
     if (typeof navigator !== "undefined" && navigator.share) {
@@ -79,31 +109,22 @@ END:VCARD`;
     URL.revokeObjectURL(url);
   };
 
-  const handleGoogleWallet = async () => {
-    const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${encodeURIComponent(
-      window.location.href
-    )}&color=000000&bgcolor=ffffff&format=png&margin=20`;
-
-    try {
-      const response = await fetch(qrUrl);
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = "JL-Digital-Wallet-QR.png";
-      document.body.appendChild(link);
-      link.click();
-      window.URL.revokeObjectURL(url);
-      document.body.removeChild(link);
-
-      setTimeout(() => {
-        alert(T[lang].walletAlert);
-      }, 500);
-    } catch (error) {
-      console.error("Error downloading QR", error);
-      window.open(qrUrl, "_blank");
+  const handleGoogleWallet = () => {
+    if (!qrCodeDataUrl) {
+      alert(T[lang].walletAlert);
+      return;
     }
+
+    const link = document.createElement("a");
+    link.href = qrCodeDataUrl;
+    link.download = "JL-Digital-Wallet-QR.png";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    setTimeout(() => {
+      alert(T[lang].walletAlert);
+    }, 500);
   };
 
   const getIcon = (iconName: string) => {
@@ -533,14 +554,18 @@ END:VCARD`;
             </div>
 
             <div className="bg-slate-50 p-4 rounded-xl inline-block mb-4 border border-slate-100">
-              <img
-                src={`https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(
-                  window.location.href
-                )}&color=1e293b&bgcolor=f8fafc`}
-                alt="QR Code"
-                className="w-48 h-48 mix-blend-multiply"
-                loading="lazy"
-              />
+              {qrCodeDataUrl ? (
+                <img
+                  src={qrCodeDataUrl}
+                  alt="QR Code"
+                  className="w-48 h-48 mix-blend-multiply"
+                  loading="lazy"
+                />
+              ) : (
+                <div className="w-48 h-48 flex items-center justify-center text-xs font-semibold text-slate-500">
+                  Génération du QR code...
+                </div>
+              )}
             </div>
 
             <button
