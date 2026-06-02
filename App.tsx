@@ -16,7 +16,6 @@ import {
   ShoppingBag,
   Code,
   TrendingUp,
-  Headphones,
   Cpu,
   CheckCircle,
   Twitter,
@@ -24,6 +23,10 @@ import {
   ChevronDown,
   Sparkles,
   HelpCircle,
+  Handshake,
+  Rocket,
+  Workflow,
+  ExternalLink,
 } from "lucide-react";
 import { DATA, T } from "./constants";
 import { ActionButton } from "./components/ActionButton";
@@ -165,9 +168,13 @@ END:VCARD`;
       case "TrendingUp":
         return <TrendingUp size={24} />;
       case "Headphones":
-        return <Headphones size={24} />;
+        return <Handshake size={24} />;
       case "Cpu":
-        return <Cpu size={24} />;
+        return <Rocket size={24} />;
+      case "Workflow":
+        return <Workflow size={24} />;
+      case "ShieldCheck":
+        return <ShieldCheck size={24} />;
       default:
         return <Lightbulb size={24} />;
     }
@@ -287,12 +294,18 @@ END:VCARD`;
               />
               <ActionButton
                 onClick={() =>
-                  window.open(DATA.website, "_blank", "noopener,noreferrer")
+                  document.getElementById('projects-section')?.scrollIntoView({behavior:'smooth'})
                 }
                 icon={<Globe size={18} />}
                 text={T[lang].portfolio}
                 subtext={DATA.website}
                 highlight
+              />
+              <ActionButton
+                onClick={() => window.open(DATA.blog, "_blank", "noopener,noreferrer")}
+                icon={<ExternalLink size={18} />}
+                text={T[lang].blog}
+                subtext="jlgouaho.com/blog"
               />
             </div>
 
@@ -392,6 +405,45 @@ END:VCARD`;
                       </li>
                     ))}
                   </ul>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Projects / Réalisations */}
+          <section id="projects-section" aria-labelledby="projects-heading">
+            <h2 id="projects-heading" className="text-2xl font-bold text-slate-800 mb-8 ml-4 flex items-center gap-3">
+              <Code size={22} className="text-indigo-600" aria-hidden="true" />
+              {T[lang].projects}
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {DATA.projects[lang].map((project, i) => (
+                <div key={i} className="bg-white/60 p-6 rounded-3xl border border-white shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
+                  <div className="flex items-start gap-4 mb-3">
+                    <div className="bg-indigo-50 w-12 h-12 rounded-2xl flex items-center justify-center text-indigo-600 shrink-0">
+                      {getIcon(project.icon)}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-bold text-slate-800 text-lg mb-1">{project.name}</h3>
+                      <p className="text-sm text-slate-500 leading-relaxed">{project.desc[lang]}</p>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap gap-1.5 mb-3">
+                    {project.tags.map((tag, j) => (
+                      <span key={j} className="px-2 py-0.5 rounded-md bg-slate-100 text-slate-500 text-[10px] font-semibold border border-slate-200/50">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  {project.url && project.url !== "#" && (
+                    <a
+                      href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-xs font-bold text-indigo-600 hover:text-indigo-700 transition-colors">
+                      {T[lang].viewProject} <ExternalLink size={12} />
+                    </a>
+                  )}
                 </div>
               ))}
             </div>

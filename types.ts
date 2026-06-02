@@ -27,6 +27,14 @@ export interface Testimonial {
     text: string;
 }
 
+export interface Project {
+  name: string;
+  desc: Record<Language, string>;
+  url: string;
+  tags: string[];
+  icon: string;
+}
+
 export interface Stat {
     value: string;
     label: string;
@@ -51,6 +59,7 @@ export interface AppData {
   location: string;
   email: string;
   website: string;
+  blogUrl?: string;
   linkedin: string;
   github: string;
   x: string;
@@ -65,6 +74,7 @@ export interface AppData {
   testimonials: Record<Language, Testimonial[]>;
   stats: Record<Language, Stat[]>;
   faq: Record<Language, FaqItem[]>;
+  projects: Record<Language, Project[]>;
   expertise: Record<Language, Expertise[]>;
 }
 
@@ -91,4 +101,7 @@ export interface Translations {
   faq: string;
   trustNeq: string;
   startingAt: string;
+  projects: string;
+  blog: string;
+  viewProject: string;
 }

@@ -12,6 +12,7 @@ export const DATA: AppData = {
   location: "Québec, Canada",
   email: "jl.gouaho@gmail.com",
   website: "https://jlgouaho.com",
+  blogUrl: "https://jlgouaho.com/blog",
   linkedin: "https://linkedin.com/in/jlgouaho/",
   github: "https://github.com/cortex225",
   x: "https://x.com/jlgouaho",
@@ -52,7 +53,7 @@ export const DATA: AppData = {
           "Moins d'erreurs",
           "+10h/semaine gagnées",
         ],
-        icon: "Code",
+        icon: "Workflow",
       },
     ],
     en: [
@@ -72,7 +73,7 @@ export const DATA: AppData = {
         name: "Automation & Time Savings",
         desc: "How many hours do you waste on repetitive tasks? Invoicing, client follow-ups, reports... I automate what's eating your time so you can focus on your actual business.",
         features: ["Zero manual tasks", "Fewer errors", "+10h/week saved"],
-        icon: "Code",
+        icon: "Workflow",
       },
     ],
   },
@@ -86,12 +87,12 @@ export const DATA: AppData = {
       {
         title: "Accompagnement Humain",
         desc: "Vous n'êtes pas livré à vous-même. Je reste disponible, je vous forme, je vous accompagne.",
-        icon: "Headphones",
+        icon: "Handshake",
       },
       {
         title: "Clé en Main",
         desc: "Vous n'avez rien à faire. Je gère tout de A à Z, vous récoltez les bénéfices.",
-        icon: "Cpu",
+        icon: "Rocket",
       },
     ],
     en: [
@@ -103,12 +104,12 @@ export const DATA: AppData = {
       {
         title: "Human Support",
         desc: "You're not left on your own. I stay available, train you, and support you.",
-        icon: "Headphones",
+        icon: "Handshake",
       },
       {
         title: "Turnkey Service",
         desc: "You don't have to do anything. I handle everything A to Z, you reap the benefits.",
-        icon: "Cpu",
+        icon: "Rocket",
       },
     ],
   },
@@ -243,56 +244,162 @@ export const DATA: AppData = {
   faq: {
     fr: [
       {
-        q: "Combien coûte la création d'un site web au Québec ?",
-        a: "Un site vitrine professionnel démarre à 1 500 $ CAD, une boutique en ligne clé en main à 2 500 $ CAD et une automatisation sur mesure à 800 $ CAD. Vous obtenez un devis précis lors de l'appel découverte gratuit de 15 minutes.",
+        q: "Qui est Déto Jean-Luc Gouaho ?",
+        a: "Je suis un développeur web freelance basé à Granby, Québec. Je crée des sites, des apps et des automatisations pour les entrepreneurs et PME depuis 5+ ans. J'ai aussi lancé plusieurs projets SaaS comme RecruitEasy.ca. Mon objectif : vous aider à vendre plus grâce au web, sans jargon."
       },
       {
-        q: "Quel est le délai de livraison ?",
-        a: "2 à 4 semaines pour un site vitrine, 4 à 8 semaines pour une boutique en ligne complète. Vous validez chaque étape pour éviter toute mauvaise surprise à la livraison.",
+        q: "Qu'avez-vous déjà réalisé ?",
+        a: "J'ai livré plus de 20 projets : sites vitrines, boutiques en ligne, apps web, automatisations d'entreprise. Vous pouvez voir mes réalisations dans la section Projets de cette carte, ou sur mon portfolio complet à jlgouaho.com."
       },
       {
-        q: "Travaillez-vous en dehors de Granby ?",
-        a: "Oui. Je travaille à distance avec des clients partout au Québec, au Canada, en France et aux États-Unis. Visioconférence, outils collaboratifs et suivi clair à chaque étape.",
+        q: "Cette carte de visite, c'est quoi exactement ?",
+        a: "C'est votre point d'entrée unique pour me connaître et me contacter. Scannez le QR code pour la sauvegarder dans vos contacts. Vous y trouvez mes services, mes projets, mes technos, et un accès direct pour réserver un appel gratuit de 15 minutes."
       },
       {
-        q: "Êtes-vous une entreprise enregistrée ?",
-        a: "Oui — JL Digital Services est enregistrée au Registraire des entreprises du Québec sous le NEQ 2279991246. Factures officielles, contrat clair, assurance professionnelle.",
+        q: "Comment vous contacter ou collaborer avec vous ?",
+        a: "Le plus simple : réservez un appel découverte gratuit de 15 minutes via le bouton sur cette carte. Vous pouvez aussi m'écrire à jl.gouaho@gmail.com, sur LinkedIn ou WhatsApp. Je réponds en moins de 48h."
       },
       {
-        q: "Quelles technologies utilisez-vous ?",
-        a: "React, Next.js, Node.js, TypeScript pour les applications web, Shopify et WooCommerce pour le e-commerce, WordPress pour les sites vitrines, n8n / Make / Zapier pour l'automatisation. Le choix s'adapte toujours à vos besoins et à votre budget.",
+        q: "Travaillez-vous avec des clients à l'international ?",
+        a: "Oui ! Je travaille à distance avec des clients au Québec, au Canada, en France et aux États-Unis. Je suis bilingue français/anglais et je m'adapte à votre fuseau horaire."
       },
       {
-        q: "Que se passe-t-il après la livraison ?",
-        a: "Je vous forme à utiliser votre site/boutique, je reste disponible pour les questions et j'offre un suivi pour vous aider à grandir : SEO, ajustements, nouvelles fonctionnalités.",
-      },
+        q: "Pourquoi JL Digital Services est-elle enregistrée au Québec ?",
+        a: "Parce que je prends mon métier au sérieux. Mon entreprise est enregistrée au Registraire des entreprises du Québec sous le NEQ 2279991246. Vous avez un contrat clair, des factures officielles et une assurance professionnelle."
+      }
     ],
     en: [
       {
-        q: "How much does a website cost in Quebec?",
-        a: "A professional showcase site starts at 1,500 CAD, a turnkey online store at 2,500 CAD and a custom automation at 800 CAD. You get a precise quote during the free 15-minute discovery call.",
+        q: "Who is Déto Jean-Luc Gouaho?",
+        a: "I'm a freelance web developer based in Granby, Quebec. I've been building websites, apps, and automations for entrepreneurs and SMBs for 5+ years. I also launched several SaaS projects like RecruitEasy.ca. My goal: help you sell more through the web, no jargon."
       },
       {
-        q: "What is your delivery time?",
-        a: "2 to 4 weeks for a showcase site, 4 to 8 weeks for a complete online store. You validate every step — no bad surprises at delivery.",
+        q: "What have you already built?",
+        a: "I've delivered 20+ projects: showcase sites, online stores, web apps, business automations. You can see my work in the Projects section on this card, or visit my full portfolio at jlgouaho.com."
       },
       {
-        q: "Do you work outside Granby?",
-        a: "Yes. I work remotely with clients across Quebec, Canada, France and the United States. Video calls, collaborative tools and clear tracking at every step.",
+        q: "What is this digital card exactly?",
+        a: "It's your single entry point to learn about me and get in touch. Scan the QR code to save it to your contacts. You'll find my services, projects, tech stack, and direct access to book a free 15-minute discovery call."
       },
       {
-        q: "Are you a registered business?",
-        a: "Yes — JL Digital Services is registered with the Quebec Enterprise Register under NEQ 2279991246. Official invoices, clear contracts, professional insurance.",
+        q: "How can I reach or work with you?",
+        a: "Easiest: book a free 15-minute discovery call via the button on this card. You can also email me at jl.gouaho@gmail.com, or reach out on LinkedIn or WhatsApp. I respond within 48h."
       },
       {
-        q: "What technologies do you use?",
-        a: "React, Next.js, Node.js, TypeScript for web applications; Shopify and WooCommerce for e-commerce; WordPress for showcase sites; n8n / Make / Zapier for automation. The choice always adapts to your needs and budget.",
+        q: "Do you work with international clients?",
+        a: "Yes! I work remotely with clients across Quebec, Canada, France, and the United States. I'm bilingual French/English and adapt to your timezone."
       },
       {
-        q: "What happens after delivery?",
-        a: "I train you to use your site/store, stay available for questions and offer follow-up support to help you grow: SEO, adjustments, new features.",
+        q: "Why is JL Digital Services registered in Quebec?",
+        a: "Because I take my work seriously. My business is registered with the Quebec Enterprise Register under NEQ 2279991246. You get a clear contract, official invoices, and professional insurance."
+      }
+    ]
+  },
+  projects: {
+    fr: [
+      {
+        name: "RecruitEasy.ca",
+        desc: {
+          fr: "Plateforme SaaS de recrutement qui automatise la publication d'offres d'emploi et la présélection de candidats pour les PME canadiennes.",
+          en: "SaaS recruitment platform that automates job posting and candidate screening for Canadian SMBs."
+        },
+        url: "https://recruiteasy.ca",
+        tags: ["Next.js", "React", "Node.js", "PostgreSQL"],
+        icon: "Globe"
       },
+      {
+        name: "JL-Fit AI",
+        desc: {
+          fr: "Application de coaching fitness intelligente avec plans d'entraînement personnalisés générés par IA, suivi de progression et recommandations nutritionnelles.",
+          en: "AI-powered fitness coaching app with personalized workout plans, progress tracking, and nutrition recommendations."
+        },
+        url: "#",
+        tags: ["React", "TypeScript", "AI", "PWA"],
+        icon: "TrendingUp"
+      },
+      {
+        name: "playerConnect",
+        desc: {
+          fr: "Plateforme sociale de mise en relation pour joueurs et créateurs de contenu gaming, avec matchmaking par centres d'intérêt et intégration Discord.",
+          en: "Social matchmaking platform for gamers and content creators, with interest-based matching and Discord integration."
+        },
+        url: "#",
+        tags: ["Next.js", "Supabase", "Discord API"],
+        icon: "Code"
+      },
+      {
+        name: "instaHR",
+        desc: {
+          fr: "Outil RH intelligent qui automatise la publication multicanal d'offres d'emploi, le tri des candidatures et la planification d'entretiens.",
+          en: "Smart HR tool that automates multi-channel job posting, applicant sorting, and interview scheduling."
+        },
+        url: "#",
+        tags: ["React", "n8n", "Make", "API"],
+        icon: "Cpu"
+      },
+      {
+        name: "masecurite",
+        desc: {
+          fr: "Application mobile de gestion de sécurité pour DGROUP CI, avec signalement d'incidents, géolocalisation et tableaux de bord en temps réel.",
+          en: "Mobile security management app for DGROUP CI, with incident reporting, geolocation, and real-time dashboards."
+        },
+        url: "#",
+        tags: ["React Native", ".NET", "Azure"],
+        icon: "ShieldCheck"
+      }
     ],
+    en: [
+      {
+        name: "RecruitEasy.ca",
+        desc: {
+          fr: "Plateforme SaaS de recrutement qui automatise la publication d'offres d'emploi et la présélection de candidats pour les PME canadiennes.",
+          en: "SaaS recruitment platform that automates job posting and candidate screening for Canadian SMBs."
+        },
+        url: "https://recruiteasy.ca",
+        tags: ["Next.js", "React", "Node.js", "PostgreSQL"],
+        icon: "Globe"
+      },
+      {
+        name: "JL-Fit AI",
+        desc: {
+          fr: "Application de coaching fitness intelligente avec plans d'entraînement personnalisés générés par IA, suivi de progression et recommandations nutritionnelles.",
+          en: "AI-powered fitness coaching app with personalized workout plans, progress tracking, and nutrition recommendations."
+        },
+        url: "#",
+        tags: ["React", "TypeScript", "AI", "PWA"],
+        icon: "TrendingUp"
+      },
+      {
+        name: "playerConnect",
+        desc: {
+          fr: "Plateforme sociale de mise en relation pour joueurs et créateurs de contenu gaming, avec matchmaking par centres d'intérêt et intégration Discord.",
+          en: "Social matchmaking platform for gamers and content creators, with interest-based matching and Discord integration."
+        },
+        url: "#",
+        tags: ["Next.js", "Supabase", "Discord API"],
+        icon: "Code"
+      },
+      {
+        name: "instaHR",
+        desc: {
+          fr: "Outil RH intelligent qui automatise la publication multicanal d'offres d'emploi, le tri des candidatures et la planification d'entretiens.",
+          en: "Smart HR tool that automates multi-channel job posting, applicant sorting, and interview scheduling."
+        },
+        url: "#",
+        tags: ["React", "n8n", "Make", "API"],
+        icon: "Cpu"
+      },
+      {
+        name: "masecurite",
+        desc: {
+          fr: "Application mobile de gestion de sécurité pour DGROUP CI, avec signalement d'incidents, géolocalisation et tableaux de bord en temps réel.",
+          en: "Mobile security management app for DGROUP CI, with incident reporting, geolocation, and real-time dashboards."
+        },
+        url: "#",
+        tags: ["React Native", ".NET", "Azure"],
+        icon: "ShieldCheck"
+      }
+    ]
   },
 };
 
@@ -321,6 +428,9 @@ export const T: Record<Language, Translations> = {
     faq: "Questions fréquentes",
     trustNeq: "Entreprise enregistrée",
     startingAt: "à partir de",
+    projects: "Mes réalisations",
+    blog: "Mon blog",
+    viewProject: "Voir le projet",
   },
   en: {
     contact: "Let's talk about your project",
@@ -346,5 +456,8 @@ export const T: Record<Language, Translations> = {
     faq: "Frequently asked questions",
     trustNeq: "Registered business",
     startingAt: "starting at",
+    projects: "My projects",
+    blog: "My blog",
+    viewProject: "View project",
   },
 };
