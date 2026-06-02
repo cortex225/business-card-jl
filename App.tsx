@@ -32,15 +32,42 @@ import WhatsAppIcon from "./components/WhatsAppIcon";
 import { CalEmbed } from "./components/CalEmbed";
 import { Language } from "./types";
 
+const BUSINESS_CARD_URL = "https://business.jlgouaho.com";
+
+const getInitialLanguage = (): Language => {
+  if (typeof window === "undefined") return "fr";
+
+  const params = new URLSearchParams(window.location.search);
+  if (window.location.pathname.startsWith("/en") || params.get("lang") === "en") {
+    return "en";
+  }
+
+  return "fr";
+};
+
 const App = () => {
-  const [lang, setLang] = useState<Language>("fr");
+  const [lang, setLang] = useState<Language>(getInitialLanguage);
   const [showQR, setShowQR] = useState(false);
   const [showCal, setShowCal] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [qrCodeDataUrl, setQrCodeDataUrl] = useState<string>("");
 
   const cardUrl =
-    typeof window !== "undefined" ? window.location.href : DATA.website;
+    typeof window !== "undefined" ? window.location.href : BUSINESS_CARD_URL;
+
+  useEffect(() => {
+    document.documentElement.lang = lang === "en" ? "en" : "fr";
+  }, [lang]);
+
+  const switchLanguage = () => {
+    const nextLang: Language = lang === "fr" ? "en" : "fr";
+    setLang(nextLang);
+
+    if (typeof window !== "undefined") {
+      const nextPath = nextLang === "en" ? "/en" : "/fr";
+      window.history.replaceState(null, "", nextPath);
+    }
+  };
 
   useEffect(() => {
     let isMounted = true;
@@ -157,7 +184,7 @@ END:VCARD`;
             {/* Toolbar */}
             <div className="flex justify-between items-center mb-6">
               <button
-                onClick={() => setLang((l) => (l === "fr" ? "en" : "fr"))}
+                onClick={switchLanguage}
                 aria-label={lang === "fr" ? "Switch to English" : "Passer en français"}
                 title={lang === "fr" ? "Switch to English" : "Passer en français"}
                 className="bg-white/60 backdrop-blur-md px-3 py-2 rounded-full shadow-sm border border-white text-xs font-bold text-slate-600 flex items-center gap-1.5 hover:bg-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">

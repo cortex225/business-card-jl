@@ -1,12 +1,12 @@
 # robots.txt for JL Digital Services
-# https://buisiness.jlgouaho.com
+# https://business.jlgouaho.com
 
 # Default: allow all traditional search engines
 User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://buisiness.jlgouaho.com/sitemap.xml
+Sitemap: https://business.jlgouaho.com/sitemap.xml
 
 # Traditional search engines
 User-agent: Googlebot
@@ -95,4 +95,4 @@ User-agent: FacebookBot
 Allow: /
 
 # Host directive
-Host: https://buisiness.jlgouaho.com
+Host: https://business.jlgouaho.com
