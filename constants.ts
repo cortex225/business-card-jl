@@ -77,42 +77,6 @@ export const DATA: AppData = {
       },
     ],
   },
-  whyChooseUs: {
-    fr: [
-      {
-        title: "Résultats Garantis",
-        desc: "Pas de jargon technique. Je parle chiffres : plus de visiteurs, plus de clients, plus de ventes.",
-        icon: "TrendingUp",
-      },
-      {
-        title: "Accompagnement Humain",
-        desc: "Vous n'êtes pas livré à vous-même. Je reste disponible, je vous forme, je vous accompagne.",
-        icon: "Handshake",
-      },
-      {
-        title: "Clé en Main",
-        desc: "Vous n'avez rien à faire. Je gère tout de A à Z, vous récoltez les bénéfices.",
-        icon: "Rocket",
-      },
-    ],
-    en: [
-      {
-        title: "Guaranteed Results",
-        desc: "No tech jargon. I speak numbers: more visitors, more customers, more sales.",
-        icon: "TrendingUp",
-      },
-      {
-        title: "Human Support",
-        desc: "You're not left on your own. I stay available, train you, and support you.",
-        icon: "Handshake",
-      },
-      {
-        title: "Turnkey Service",
-        desc: "You don't have to do anything. I handle everything A to Z, you reap the benefits.",
-        icon: "Rocket",
-      },
-    ],
-  },
   process: {
     fr: [
       {
@@ -415,7 +379,6 @@ export const T: Record<Language, Translations> = {
     scan: "Scannez pour me contacter",
     close: "Fermer",
     about: "Mon approche",
-    whyUs: "Pourquoi travailler avec moi ?",
     ourProcess: "Comment ça se passe",
     testimonials: "Ils m'ont fait confiance",
     rights: "Tous droits réservés.",
@@ -443,7 +406,6 @@ export const T: Record<Language, Translations> = {
     scan: "Scan to contact me",
     close: "Close",
     about: "My approach",
-    whyUs: "Why work with me?",
     ourProcess: "How it works",
     testimonials: "They trusted me",
     rights: "All rights reserved.",

@@ -359,29 +359,7 @@ END:VCARD`;
             </div>
           </section>
 
-          {/* Why Choose Us (Stats/Features) */}
-          <section aria-labelledby="why-heading">
-            <h2 id="why-heading" className="text-2xl font-bold text-slate-800 mb-8 ml-4">
-              {T[lang].whyUs}
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {DATA.whyChooseUs[lang].map((item, i) => (
-                <div
-                  key={i}
-                  className="bg-white/60 p-6 rounded-3xl border border-white shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
-                  <div className="bg-emerald-50 w-12 h-12 rounded-2xl flex items-center justify-center text-emerald-600 mb-4" aria-hidden="true">
-                    {getIcon(item.icon)}
-                  </div>
-                  <h3 className="font-bold text-slate-800 mb-2">
-                    {item.title}
-                  </h3>
-                  <p className="text-sm text-slate-500 leading-relaxed">
-                    {item.desc}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </section>
+          
 
           {/* Expertise — entity-rich, citation-friendly block for AI engines */}
           <section aria-labelledby="expertise-heading">

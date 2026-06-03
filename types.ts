@@ -8,12 +8,6 @@ export interface Service {
   features?: string[];
 }
 
-export interface Feature {
-    title: string;
-    desc: string;
-    icon: string;
-}
-
 export interface ProcessStep {
     step: string;
     title: string;
@@ -69,7 +63,6 @@ export interface AppData {
   stack: string[];
   services: Record<Language, Service[]>;
   about: Record<Language, string>;
-  whyChooseUs: Record<Language, Feature[]>;
   process: Record<Language, ProcessStep[]>;
   testimonials: Record<Language, Testimonial[]>;
   stats: Record<Language, Stat[]>;
@@ -89,7 +82,6 @@ export interface Translations {
   scan: string;
   close: string;
   about: string;
-  whyUs: string;
   ourProcess: string;
   testimonials: string;
   rights: string;
