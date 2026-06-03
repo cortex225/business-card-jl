@@ -14,7 +14,6 @@ import {
   Wallet,
   Lightbulb,
   ShoppingBag,
-  Code,
   TrendingUp,
   Cpu,
   CheckCircle,
@@ -27,6 +26,7 @@ import {
   Rocket,
   Workflow,
   ExternalLink,
+  Book,
 } from "lucide-react";
 import { DATA, T } from "./constants";
 import { ActionButton } from "./components/ActionButton";
@@ -163,8 +163,6 @@ END:VCARD`;
         return <Globe size={24} />;
       case "ShoppingBag":
         return <ShoppingBag size={24} />;
-      case "Code":
-        return <Code size={24} />;
       case "TrendingUp":
         return <TrendingUp size={24} />;
       case "Headphones":
@@ -293,17 +291,14 @@ END:VCARD`;
                 subtext=".vcf"
               />
               <ActionButton
-                onClick={() =>
-                  document.getElementById('projects-section')?.scrollIntoView({behavior:'smooth'})
-                }
+                onClick={() => window.open(DATA.website, "_blank", "noopener,noreferrer")}
                 icon={<Globe size={18} />}
                 text={T[lang].portfolio}
                 subtext={DATA.website}
-                highlight
               />
               <ActionButton
-                onClick={() => window.open(DATA.blog, "_blank", "noopener,noreferrer")}
-                icon={<ExternalLink size={18} />}
+                onClick={() => window.open(DATA.blogUrl, "_blank", "noopener,noreferrer")}
+                icon={<Book size={18} />}
                 text={T[lang].blog}
                 subtext="jlgouaho.com/blog"
               />
@@ -410,42 +405,25 @@ END:VCARD`;
             </div>
           </section>
 
-          {/* Projects / Réalisations */}
-          <section id="projects-section" aria-labelledby="projects-heading">
-            <h2 id="projects-heading" className="text-2xl font-bold text-slate-800 mb-8 ml-4 flex items-center gap-3">
-              <Code size={22} className="text-indigo-600" aria-hidden="true" />
+          {/* Projets — lien direct vers le portfolio */}
+          <section aria-labelledby="projects-heading">
+            <h2 id="projects-heading" className="text-2xl font-bold text-slate-800 mb-4 ml-4 flex items-center gap-3">
+              <Globe size={22} className="text-indigo-600" aria-hidden="true" />
               {T[lang].projects}
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {DATA.projects[lang].map((project, i) => (
-                <div key={i} className="bg-white/60 p-6 rounded-3xl border border-white shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
-                  <div className="flex items-start gap-4 mb-3">
-                    <div className="bg-indigo-50 w-12 h-12 rounded-2xl flex items-center justify-center text-indigo-600 shrink-0">
-                      {getIcon(project.icon)}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h3 className="font-bold text-slate-800 text-lg mb-1">{project.name}</h3>
-                      <p className="text-sm text-slate-500 leading-relaxed">{project.desc[lang]}</p>
-                    </div>
-                  </div>
-                  <div className="flex flex-wrap gap-1.5 mb-3">
-                    {project.tags.map((tag, j) => (
-                      <span key={j} className="px-2 py-0.5 rounded-md bg-slate-100 text-slate-500 text-[10px] font-semibold border border-slate-200/50">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  {project.url && project.url !== "#" && (
-                    <a
-                      href={project.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-xs font-bold text-indigo-600 hover:text-indigo-700 transition-colors">
-                      {T[lang].viewProject} <ExternalLink size={12} />
-                    </a>
-                  )}
-                </div>
-              ))}
+            <div className="bg-white/60 p-6 rounded-3xl border border-white shadow-sm ml-4">
+              <p className="text-slate-600 leading-relaxed mb-4">
+                {lang === "fr"
+                  ? "Découvrez l'ensemble de mes réalisations sur mon portfolio."
+                  : "Discover all my work on my portfolio."}
+              </p>
+              <a
+                href={DATA.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm font-bold text-indigo-600 hover:text-indigo-700 transition-colors">
+                {DATA.website} <ExternalLink size={14} />
+              </a>
             </div>
           </section>
 

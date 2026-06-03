@@ -249,7 +249,7 @@ export const DATA: AppData = {
       },
       {
         q: "Qu'avez-vous déjà réalisé ?",
-        a: "J'ai livré plus de 20 projets : sites vitrines, boutiques en ligne, apps web, automatisations d'entreprise. Vous pouvez voir mes réalisations dans la section Projets de cette carte, ou sur mon portfolio complet à jlgouaho.com."
+        a: "J'ai livré plus de 20 projets : sites vitrines, boutiques en ligne, apps web, automatisations d'entreprise. Vous pouvez voir toutes mes réalisations sur mon portfolio à jlgouaho.com."
       },
       {
         q: "Cette carte de visite, c'est quoi exactement ?",
@@ -275,7 +275,7 @@ export const DATA: AppData = {
       },
       {
         q: "What have you already built?",
-        a: "I've delivered 20+ projects: showcase sites, online stores, web apps, business automations. You can see my work in the Projects section on this card, or visit my full portfolio at jlgouaho.com."
+        a: "I've delivered 20+ projects: showcase sites, online stores, web apps, business automations. You can see all my work on my portfolio at jlgouaho.com."
       },
       {
         q: "What is this digital card exactly?",
