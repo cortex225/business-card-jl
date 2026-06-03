@@ -383,27 +383,7 @@ END:VCARD`;
             </div>
           </section>
 
-          {/* Projets — lien direct vers le portfolio */}
-          <section aria-labelledby="projects-heading">
-            <h2 id="projects-heading" className="text-2xl font-bold text-slate-800 mb-4 ml-4 flex items-center gap-3">
-              <Globe size={22} className="text-indigo-600" aria-hidden="true" />
-              {T[lang].projects}
-            </h2>
-            <div className="bg-white/60 p-6 rounded-3xl border border-white shadow-sm ml-4">
-              <p className="text-slate-600 leading-relaxed mb-4">
-                {lang === "fr"
-                  ? "Découvrez l'ensemble de mes réalisations sur mon portfolio."
-                  : "Discover all my work on my portfolio."}
-              </p>
-              <a
-                href={DATA.website}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-bold text-indigo-600 hover:text-indigo-700 transition-colors">
-                {DATA.website} <ExternalLink size={14} />
-              </a>
-            </div>
-          </section>
+
 
           {/* Services */}
           <section aria-labelledby="services-heading">
