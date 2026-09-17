@@ -1,0 +1,36 @@
+# JL Digital Services — Déto Jean-Luc Gouaho
+
+> Développeur web freelance basé à Granby (Estrie, Québec, Canada). Création de sites web, boutiques en ligne et automatisations sur mesure pour entrepreneurs et PME. Entreprise enregistrée au Québec (NEQ 2279991246).
+> Freelance web developer based in Granby, Quebec, Canada. Websites, online stores and custom automations for entrepreneurs and SMBs.
+
+- Site: https://business.jlgouaho.com (fr) · https://business.jlgouaho.com/en (en)
+- Portfolio: https://jlgouaho.com · Blog: https://jlgouaho.com/blog
+- Email: jl.gouaho@gmail.com · Phone / WhatsApp: +1 450 521 1098
+- Book a free 15-minute call: https://cal.com/jean-luc-gouaho-zgnemm/jl-digital-services-call
+- LinkedIn: https://linkedin.com/in/jlgouaho/ · GitHub: https://github.com/cortex225
+
+## Services
+
+- Sites web professionnels (vitrine, entreprise, landing page) : à partir de 1 500 $ CAD, livraison en 2 à 4 semaines.
+- Boutiques en ligne clés en main (Shopify, WooCommerce, sur mesure) : à partir de 2 500 $ CAD.
+- Automatisation de processus (facturation, relances, rapports, intégrations API) avec n8n, Make, Zapier : à partir de 800 $ CAD.
+- SEO et optimisation pour moteurs génératifs (GEO), stratégie digitale, UX/UI.
+
+## Zone desservie
+
+Québec (Granby, Sherbrooke, Drummondville, Saint-Hyacinthe, Bromont, Montréal), Canada, France, États-Unis. Français et anglais, à distance ou en personne en Estrie et Montérégie.
+
+## Technologies
+
+React, Next.js, Node.js, TypeScript, Tailwind CSS, React Native, .NET, Azure, Shopify, WooCommerce, WordPress, Stripe, Cal.com, n8n, Make, Zapier, PostgreSQL, Vercel.
+
+## FAQ
+
+- Combien coûte un site web ? Site vitrine dès 1 500 $ CAD, boutique en ligne dès 2 500 $ CAD, automatisation dès 800 $ CAD. Devis après un appel gratuit de 15 minutes.
+- Délai de livraison ? 2 à 4 semaines pour un site vitrine, 4 à 8 semaines pour une boutique complète.
+- Entreprise enregistrée ? Oui, NEQ 2279991246, factures officielles et contrat clair.
+
+## Optional
+
+- [Sitemap](https://business.jlgouaho.com/sitemap.xml)
+- [Portfolio complet](https://jlgouaho.com/fr/projects)
