@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      .animated-bg {
+        background: linear-gradient(-45deg, #eff6ff, #f8fafc, #e0e7ff, #f1f5f9);
+        background-size: 400% 400%;
+        animation: gradient 15s ease infinite;
+      }
+      @keyframes gradient {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.1),
+          0 10px 20px -5px rgba(0, 0, 0, 0.04);
+      }
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+
+      /* ---------- Motion & wow effects ---------- */
+      .reveal {
+        opacity: 0;
+        transform: translateY(22px);
+        transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+        will-change: opacity, transform;
+      }
+      .reveal.is-visible {
+        opacity: 1;
+        transform: none;
+      }
+      [data-spotlight] {
+        position: relative;
+        overflow: hidden;
+      }
+      [data-spotlight]::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        background: radial-gradient(400px circle at var(--mx, 50%) var(--my, 50%), rgba(99, 102, 241, 0.14), transparent 60%);
+        z-index: 0;
+      }
+      [data-spotlight]:hover::before {
+        opacity: 1;
+      }
+      [data-spotlight] > * {
+        position: relative;
+        z-index: 1;
+      }
+      @property --ring-angle {
+        syntax: "<angle>";
+        inherits: false;
+        initial-value: 0deg;
+      }
+      .avatar-ring {
+        border-radius: 9999px;
+        padding: 4px;
+        background: conic-gradient(from var(--ring-angle), #6366f1, #22d3ee, #a855f7, #6366f1);
+        animation: ring-spin 6s linear infinite;
+        box-shadow: 0 0 40px -10px rgba(99, 102, 241, 0.6);
+      }
+      @keyframes ring-spin {
+        to { --ring-angle: 360deg; }
+      }
+      .hero-glow::after {
+        content: "";
+        position: absolute;
+        inset: -40px;
+        z-index: -1;
+        border-radius: 3rem;
+        background: radial-gradient(60% 50% at 50% 0%, rgba(99, 102, 241, 0.25), transparent 70%);
+        filter: blur(30px);
+        animation: glow-breathe 7s ease-in-out infinite;
+        pointer-events: none;
+      }
+      @keyframes glow-breathe {
+        0%, 100% { opacity: 0.6; transform: scale(1); }
+        50% { opacity: 1; transform: scale(1.06); }
+      }
+      .btn-shine {
+        position: relative;
+        overflow: hidden;
+      }
+      .btn-shine::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -75%;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+        transform: skewX(-20deg);
+        transition: left 0.6s ease;
+        pointer-events: none;
+      }
+      .btn-shine:hover::after {
+        left: 125%;
+      }
+      @keyframes float-slow {
+        0%, 100% { transform: translate3d(0, 0, 0); }
+        50% { transform: translate3d(12px, -18px, 0); }
+      }
+      .float-slow {
+        animation: float-slow 12s ease-in-out infinite;
+      }
+      :focus-visible {
+        outline: 2px solid #4f46e5;
+        outline-offset: 2px;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .animated-bg, .avatar-ring, .hero-glow::after, .float-slow, .animate-ping {
+          animation: none !important;
+        }
+        .reveal {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+        [data-spotlight]::before {
+          display: none;
+        }
+      }
+    
