@@ -33,6 +33,9 @@ import { ActionButton } from "./components/ActionButton";
 import { SocialIcon } from "./components/SocialIcon";
 import WhatsAppIcon from "./components/WhatsAppIcon";
 import { CalEmbed } from "./components/CalEmbed";
+import { Reveal } from "./components/Reveal";
+import { CountUp } from "./components/CountUp";
+import { Spotlight } from "./components/Spotlight";
 import { Language } from "./types";
 
 const BUSINESS_CARD_URL = "https://business.jlgouaho.com";
@@ -184,13 +187,13 @@ END:VCARD`;
 
       <div className="w-full max-w-7xl mx-auto p-4 md:p-8 lg:p-12 relative z-10 flex flex-col lg:flex-row gap-8 lg:gap-16 items-start">
         {/* --- LEFT COLUMN: PROFILE CARD (Fixed on scroll for Desktop) --- */}
-        <aside className="w-full lg:w-[400px] shrink-0 lg:sticky lg:top-8 self-start h-fit">
+        <aside className="w-full lg:w-[400px] shrink-0 lg:sticky lg:top-8 self-start h-fit relative hero-glow">
           <div className="glass-card rounded-[2.5rem] p-6 pb-8 overflow-hidden transition-all duration-300">
             {/* Toolbar */}
             <div className="flex justify-between items-center mb-6">
               <button
                 onClick={switchLanguage}
-                aria-label={lang === "fr" ? "Switch to English" : "Passer en français"}
+                aria-label={lang === "fr" ? "FR : switch to English" : "EN : passer en français"}
                 title={lang === "fr" ? "Switch to English" : "Passer en français"}
                 className="bg-white/60 backdrop-blur-md px-3 py-2 rounded-full shadow-sm border border-white text-xs font-bold text-slate-600 flex items-center gap-1.5 hover:bg-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
                 <Languages size={14} aria-hidden="true" /> {lang.toUpperCase()}
@@ -220,7 +223,8 @@ END:VCARD`;
             {/* Identity */}
             <div className="text-center mb-8">
               <div className="relative inline-block mb-5">
-                <div className="w-32 h-32 rounded-full shadow-2xl border-[6px] border-white mx-auto overflow-hidden bg-slate-100">
+                <div className="avatar-ring mx-auto w-fit">
+                <div className="w-32 h-32 rounded-full shadow-2xl border-[5px] border-white overflow-hidden bg-slate-100">
                   <img
                     src={DATA.avatar}
                     alt={`${DATA.name} — ${DATA.title[lang]}`}
@@ -230,6 +234,7 @@ END:VCARD`;
                     decoding="async"
                     className="w-full h-full object-cover"
                   />
+                </div>
                 </div>
                 <div className="absolute bottom-1 right-1 bg-white p-2 rounded-full shadow-lg" aria-hidden="true">
                   <Lightbulb size={20} className="text-indigo-600" />
@@ -262,18 +267,18 @@ END:VCARD`;
 
             {/* Primary Actions */}
             <div className="grid grid-cols-2 gap-3 mb-6">
-              <button
-                onClick={() => (window.location.href = `mailto:${DATA.email}`)}
-                className="bg-slate-900 hover:bg-slate-800 text-white py-4 px-4 rounded-2xl flex items-center justify-center gap-2 transition-all active:scale-95 shadow-xl shadow-slate-900/10 group">
+              <a
+                href={`mailto:${DATA.email}`}
+                className="btn-shine bg-slate-900 hover:bg-slate-800 text-white py-4 px-4 rounded-2xl flex items-center justify-center gap-2 transition-all active:scale-95 shadow-xl shadow-slate-900/10 group">
                 <Mail
                   size={18}
                   className="group-hover:-translate-y-0.5 transition-transform"
                 />
                 <span className="text-sm font-bold">{T[lang].contact}</span>
-              </button>
+              </a>
               <button
                 onClick={() => setShowCal(true)}
-                className="bg-indigo-600 hover:bg-indigo-500 text-white py-4 px-4 rounded-2xl flex items-center justify-center gap-2 transition-all active:scale-95 shadow-xl shadow-indigo-600/20 group">
+                className="btn-shine bg-indigo-600 hover:bg-indigo-500 text-white py-4 px-4 rounded-2xl flex items-center justify-center gap-2 transition-all active:scale-95 shadow-xl shadow-indigo-600/20 group">
                 <Calendar
                   size={18}
                   className="group-hover:-translate-y-0.5 transition-transform"
@@ -291,13 +296,13 @@ END:VCARD`;
                 subtext=".vcf"
               />
               <ActionButton
-                onClick={() => window.open(DATA.website, "_blank", "noopener,noreferrer")}
+                href={DATA.website}
                 icon={<Globe size={18} />}
                 text={T[lang].portfolio}
-                subtext={DATA.website}
+                subtext="jlgouaho.com"
               />
               <ActionButton
-                onClick={() => window.open(DATA.blogUrl, "_blank", "noopener,noreferrer")}
+                href={DATA.blogUrl}
                 icon={<Book size={18} />}
                 text={T[lang].blog}
                 subtext="jlgouaho.com/blog"
@@ -305,7 +310,7 @@ END:VCARD`;
             </div>
 
             {/* Social Footer */}
-            <div className="pt-6 border-t border-slate-200/50 flex justify-center gap-6" role="list" aria-label="Réseaux sociaux">
+            <nav className="pt-6 border-t border-slate-200/50 flex justify-center gap-6" aria-label={lang === "fr" ? "Réseaux sociaux" : "Social links"}>
               <SocialIcon href={DATA.linkedin} icon={<Linkedin size={22} />} label="LinkedIn" />
               <SocialIcon href={DATA.github} icon={<Github size={22} />} label="GitHub" />
               <SocialIcon href={DATA.x} icon={<Twitter size={22} />} label="X (Twitter)" />
@@ -321,7 +326,7 @@ END:VCARD`;
                 className="text-slate-400 hover:text-indigo-600 transition-colors p-2 hover:scale-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 rounded-full">
                 <QrCode size={22} aria-hidden="true" />
               </button>
-            </div>
+            </nav>
 
             {/* Trust Badge — NEQ (Quebec registered business) */}
             <div className="mt-6 flex items-center justify-center gap-2 text-[11px] text-slate-500">
@@ -334,6 +339,7 @@ END:VCARD`;
         {/* --- RIGHT COLUMN: DETAILED CONTENT --- */}
         <main id="main-content" className="flex-1 w-full space-y-12 lg:space-y-20 lg:pt-8 pb-12">
           {/* About Section */}
+          <Reveal>
           <section className="bg-white/40 backdrop-blur-sm rounded-[2rem] p-6 md:p-10 border border-white shadow-sm" aria-labelledby="about-heading">
             <h2 id="about-heading" className="text-2xl font-bold text-slate-800 mb-4 flex items-center gap-3">
               <span className="bg-indigo-100 text-indigo-600 p-2 rounded-xl" aria-hidden="true">
@@ -345,16 +351,21 @@ END:VCARD`;
               {DATA.about[lang]}
             </p>
           </section>
+          </Reveal>
 
           {/* Stats — social proof + authority signals for AI citation */}
           <section aria-labelledby="stats-heading">
             <h2 id="stats-heading" className="sr-only">{T[lang].stats}</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {DATA.stats[lang].map((s, i) => (
-                <div key={i} className="bg-white/70 backdrop-blur-sm rounded-2xl p-5 border border-white text-center shadow-sm">
-                  <div className="text-3xl md:text-4xl font-extrabold text-indigo-600 leading-none mb-1">{s.value}</div>
-                  <div className="text-xs md:text-sm text-slate-500 font-medium">{s.label}</div>
-                </div>
+                <Reveal key={i} delay={i * 80} className="h-full">
+                  <div data-spotlight className="h-full flex flex-col justify-center bg-white/70 backdrop-blur-sm rounded-2xl p-5 border border-white text-center shadow-sm hover:-translate-y-1 hover:shadow-lg hover:shadow-indigo-500/10 transition-all duration-300">
+                    <div className="text-3xl md:text-4xl font-extrabold text-indigo-600 leading-none mb-1">
+                      <CountUp value={s.value} />
+                    </div>
+                    <div className="text-xs md:text-sm text-slate-500 font-medium">{s.label}</div>
+                  </div>
+                </Reveal>
               ))}
             </div>
           </section>
@@ -369,7 +380,8 @@ END:VCARD`;
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {DATA.expertise[lang].map((group, i) => (
-                <div key={i} className="bg-white/60 p-6 rounded-3xl border border-white shadow-sm">
+                <Reveal key={i} delay={i * 80} className="h-full">
+                <div data-spotlight className="bg-white/60 p-6 rounded-3xl border border-white shadow-sm h-full">
                   <h3 className="font-bold text-slate-800 mb-3">{group.title}</h3>
                   <ul className="flex flex-wrap gap-2">
                     {group.items.map((it, j) => (
@@ -379,6 +391,7 @@ END:VCARD`;
                     ))}
                   </ul>
                 </div>
+                </Reveal>
               ))}
             </div>
           </section>
@@ -392,9 +405,10 @@ END:VCARD`;
             </h2>
             <div className="space-y-4">
               {DATA.services[lang].map((service, i) => (
+                <Reveal key={i} delay={i * 100}>
                 <div
-                  key={i}
-                  className="group bg-white rounded-[2rem] p-6 md:p-8 border border-white shadow-sm hover:shadow-xl hover:shadow-indigo-500/5 transition-all duration-300">
+                  data-spotlight
+                  className="group bg-white rounded-[2rem] p-6 md:p-8 border border-white shadow-sm hover:shadow-xl hover:shadow-indigo-500/5 hover:-translate-y-0.5 transition-all duration-300">
                   <div className="flex flex-col md:flex-row gap-6 md:items-start">
                     <div className="bg-indigo-50 w-16 h-16 rounded-2xl flex items-center justify-center text-indigo-600 shrink-0 group-hover:scale-110 transition-transform duration-300">
                       {getIcon(service.icon || "Code")}
@@ -425,13 +439,16 @@ END:VCARD`;
                     </div>
                   </div>
                 </div>
+                </Reveal>
               ))}
             </div>
           </section>
 
           {/* Process */}
+          <Reveal>
           <section className="bg-slate-900 text-slate-100 rounded-[2.5rem] p-8 md:p-12 overflow-hidden relative" aria-labelledby="process-heading">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500 rounded-full blur-[100px] opacity-20 pointer-events-none" aria-hidden="true"></div>
+            <div className="float-slow absolute top-0 right-0 w-64 h-64 bg-indigo-500 rounded-full blur-[100px] opacity-20 pointer-events-none" aria-hidden="true"></div>
+            <div className="float-slow absolute -bottom-10 -left-10 w-56 h-56 bg-cyan-400 rounded-full blur-[100px] opacity-10 pointer-events-none" aria-hidden="true" style={{ animationDelay: "-6s" }}></div>
 
             <h2 id="process-heading" className="text-2xl font-bold text-white mb-10 relative z-10">
               {T[lang].ourProcess}
@@ -455,6 +472,7 @@ END:VCARD`;
               ))}
             </div>
           </section>
+          </Reveal>
 
           {/* Testimonials */}
           <section aria-labelledby="testimonials-heading">
@@ -463,16 +481,17 @@ END:VCARD`;
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {DATA.testimonials[lang].map((t, i) => (
+                <Reveal key={i} delay={i * 100} className="h-full">
                 <figure
-                  key={i}
-                  className="bg-white/50 p-6 rounded-3xl border border-white/60">
-                  <div className="flex gap-1 text-amber-400 mb-3" aria-label="5 étoiles sur 5">
+                  data-spotlight
+                  className="bg-white/50 p-6 rounded-3xl border border-white/60 h-full">
+                  <div className="flex gap-1 text-amber-400 mb-3" role="img" aria-label={lang === "fr" ? "5 étoiles sur 5" : "5 out of 5 stars"}>
                     {[...Array(5)].map((_, k) => (
                       <span key={k} aria-hidden="true">★</span>
                     ))}
                   </div>
                   <blockquote className="text-slate-700 italic mb-4 text-sm leading-relaxed">
-                    "{t.text}"
+                    &ldquo;{t.text}&rdquo;
                   </blockquote>
                   <figcaption>
                     <div className="font-bold text-slate-900 text-sm">
@@ -483,6 +502,7 @@ END:VCARD`;
                     </div>
                   </figcaption>
                 </figure>
+                </Reveal>
               ))}
             </div>
           </section>
@@ -493,7 +513,7 @@ END:VCARD`;
               <HelpCircle size={22} className="text-indigo-600" aria-hidden="true" />
               {T[lang].faq}
             </h2>
-            <div className="space-y-3">
+            <Reveal className="space-y-3">
               {DATA.faq[lang].map((item, i) => {
                 const isOpen = openFaq === i;
                 return (
@@ -523,7 +543,7 @@ END:VCARD`;
                   </div>
                 );
               })}
-            </div>
+            </Reveal>
           </section>
 
           {/* Final CTA */}
@@ -531,7 +551,7 @@ END:VCARD`;
             <button
               onClick={() => setShowCal(true)}
               aria-label={T[lang].book}
-              className="bg-indigo-600 hover:bg-indigo-500 text-white text-lg font-bold py-5 px-10 rounded-full shadow-2xl shadow-indigo-500/30 hover:shadow-indigo-500/40 hover:-translate-y-1 transition-all focus:outline-none focus-visible:ring-4 focus-visible:ring-indigo-300">
+              className="btn-shine bg-indigo-600 hover:bg-indigo-500 text-white text-lg font-bold py-5 px-10 rounded-full shadow-2xl shadow-indigo-500/30 hover:shadow-indigo-500/40 hover:-translate-y-1 transition-all focus:outline-none focus-visible:ring-4 focus-visible:ring-indigo-300">
               {T[lang].book}
             </button>
             <p className="mt-4 text-slate-500 text-sm">
@@ -591,6 +611,8 @@ END:VCARD`;
           </div>
         </div>
       )}
+
+      <Spotlight />
 
       {/* Cal.com Embed Modal */}
       <CalEmbed isOpen={showCal} onClose={() => setShowCal(false)} />
