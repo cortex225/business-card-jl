@@ -27,12 +27,12 @@ export const DATA: AppData = {
   phone: "+14505211098",
   calendly: "https://cal.com/jean-luc-gouaho-zgnemm/jl-digital-services-call",
   stack: [
-    "Sites Web",
-    "Boutiques en Ligne",
-    "Apps Web & Mobile",
-    "Automatisation",
+    "Sites web",
+    "Boutiques en ligne",
+    "Apps web et mobile",
+    "Automatisation et IA",
     "SEO",
-    "Stratégie Digitale",
+    "Stratégie numérique",
   ],
   about: {
     fr: "Je suis développeur full-stack depuis 2022. Je crée des sites, des boutiques en ligne et des outils sur mesure pour des PME et des travailleurs autonomes, du design à la mise en ligne. Vous traitez directement avec la personne qui écrit le code, et vous gardez la propriété de votre site et de vos comptes.",
@@ -152,7 +152,7 @@ export const DATA: AppData = {
       },
       {
         title: "Automatisation",
-        items: ["n8n", "Make", "Zapier", "API & intégrations"],
+        items: ["n8n", "Make", "Zapier", "API & intégrations", "Assistants IA"],
       },
       {
         title: "SEO & GEO",
@@ -170,7 +170,7 @@ export const DATA: AppData = {
       },
       {
         title: "Automation",
-        items: ["n8n", "Make", "Zapier", "API & integrations"],
+        items: ["n8n", "Make", "Zapier", "API & integrations", "AI assistants"],
       },
       {
         title: "SEO & GEO",
