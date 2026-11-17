@@ -4,8 +4,8 @@
 > Freelance web developer based in Granby, Quebec, Canada. Websites, online stores and custom automations for entrepreneurs and SMBs.
 
 - Site: https://business.jlgouaho.com (fr) · https://business.jlgouaho.com/en (en)
-- Portfolio: https://jlgouaho.com · Blog: https://jlgouaho.com/blog
-- Email: jl.gouaho@gmail.com · Phone / WhatsApp: +1 450 521 1098
+- Portfolio: https://www.jlgouaho.com/fr · Blog: https://www.jlgouaho.com/fr/blog
+- Email: jlgouaho@gmail.com · Phone / WhatsApp: +1 450 521 1098
 - Book a free 15-minute call: https://cal.com/jean-luc-gouaho-zgnemm/jl-digital-services-call
 - LinkedIn: https://linkedin.com/in/jlgouaho/ · GitHub: https://github.com/cortex225
 
@@ -33,4 +33,4 @@ React, Next.js, Node.js, TypeScript, Tailwind CSS, React Native, .NET, Azure, Sh
 ## Optional
 
 - [Sitemap](https://business.jlgouaho.com/sitemap.xml)
-- [Portfolio complet](https://jlgouaho.com/fr/projects)
+- [Portfolio complet](https://www.jlgouaho.com/fr/projects)

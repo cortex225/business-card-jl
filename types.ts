@@ -88,4 +88,5 @@ export interface Translations {
   projects: string;
   blog: string;
   viewProject: string;
+  skipToContent: string;
 }

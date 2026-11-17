@@ -37,32 +37,34 @@ import { Reveal } from "./components/Reveal";
 import { CountUp } from "./components/CountUp";
 import { Spotlight } from "./components/Spotlight";
 import { Language } from "./types";
+import { META } from "./seo/config";
 
 const BUSINESS_CARD_URL = "https://business.jlgouaho.com";
 
-const getInitialLanguage = (): Language => {
-  if (typeof window === "undefined") return "fr";
+interface AppProps {
+  /** Decided from the URL path ("/en" or "/"), identical on the server and the client. */
+  initialLang: Language;
+}
 
-  const params = new URLSearchParams(window.location.search);
-  if (window.location.pathname.startsWith("/en") || params.get("lang") === "en") {
-    return "en";
-  }
-
-  return "fr";
-};
-
-const App = () => {
-  const [lang, setLang] = useState<Language>(getInitialLanguage);
+const App = ({ initialLang }: AppProps) => {
+  const [lang, setLang] = useState<Language>(initialLang);
   const [showQR, setShowQR] = useState(false);
   const [showCal, setShowCal] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [qrCodeDataUrl, setQrCodeDataUrl] = useState<string>("");
+  // Prerendered with the build year, then updated on the client if the build is older.
+  const [year, setYear] = useState(() => Number(__BUILD_DATE__.slice(0, 4)));
+
+  useEffect(() => {
+    setYear(new Date().getFullYear());
+  }, []);
 
   const cardUrl =
     typeof window !== "undefined" ? window.location.href : BUSINESS_CARD_URL;
 
   useEffect(() => {
-    document.documentElement.lang = lang === "en" ? "en" : "fr";
+    document.documentElement.lang = lang;
+    document.title = META[lang].title;
   }, [lang]);
 
   const switchLanguage = () => {
@@ -70,7 +72,7 @@ const App = () => {
     setLang(nextLang);
 
     if (typeof window !== "undefined") {
-      const nextPath = nextLang === "en" ? "/en" : "/fr";
+      const nextPath = nextLang === "en" ? "/en" : "/";
       window.history.replaceState(null, "", nextPath);
     }
   };
@@ -183,6 +185,9 @@ END:VCARD`;
 
   return (
     <div className="min-h-screen w-full bg-slate-50 font-sans relative selection:bg-indigo-100 selection:text-indigo-900">
+      <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-indigo-600 focus:text-white focus:px-4 focus:py-2 focus:rounded-lg">
+        {T[lang].skipToContent}
+      </a>
       <div className="fixed inset-0 animated-bg z-0 pointer-events-none"></div>
 
       <div className="w-full max-w-7xl mx-auto p-4 md:p-8 lg:p-12 relative z-10 flex flex-col lg:flex-row gap-8 lg:gap-16 items-start">
@@ -567,7 +572,7 @@ END:VCARD`;
               {T[lang].book}
             </button>
             <p className="mt-4 text-slate-500 text-sm">
-              {T[lang].rights} © {new Date().getFullYear()} {DATA.company} · NEQ {DATA.neq}
+              {T[lang].rights} © {year} {DATA.company} · NEQ {DATA.neq}
             </p>
           </div>
         </main>
