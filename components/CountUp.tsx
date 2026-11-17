@@ -7,15 +7,15 @@ export const CountUp: React.FC<{ value: string; className?: string }> = ({ value
   const target = match ? parseInt(match[2], 10) : NaN;
   const prefix = match?.[1] ?? "";
   const suffix = match?.[3] ?? "";
-  const [display, setDisplay] = useState(isNaN(target) ? value : `${prefix}0${suffix}`);
+  // The real value is rendered first (prerendered HTML, no-JS readers); the
+  // animation resets it to 0 on the client and counts up once visible.
+  const [display, setDisplay] = useState(value);
 
   useEffect(() => {
     const el = ref.current;
     if (!el || isNaN(target)) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setDisplay(value);
-      return;
-    }
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    setDisplay(`${prefix}0${suffix}`);
     let frame = 0;
     const io = new IntersectionObserver(
       (entries) => {

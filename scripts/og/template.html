@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    background: #f8fafc;
+    font-family: -apple-system, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+    color: #0f172a;
+    display: flex;
+    align-items: center;
+    padding: 0 96px;
+    gap: 72px;
+    border-top: 14px solid #4f46e5;
+  }
+  .avatar {
+    width: 320px; height: 320px; border-radius: 50%;
+    object-fit: cover; flex-shrink: 0;
+    border: 10px solid #fff;
+    box-shadow: 0 20px 50px rgba(79, 70, 229, 0.18);
+  }
+  .company { font-size: 26px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #4f46e5; margin-bottom: 18px; }
+  .name { font-size: 60px; font-weight: 800; line-height: 1.08; letter-spacing: -0.01em; margin-bottom: 22px; }
+  .role { font-size: 32px; font-weight: 600; color: #334155; margin-bottom: 14px; }
+  .services { font-size: 26px; color: #64748b; margin-bottom: 40px; }
+  .url { font-size: 24px; font-weight: 600; color: #4f46e5; }
+</style>
+</head>
+<body>
+  <img class="avatar" src="__AVATAR__" alt="" />
+  <div>
+    <div class="company">JL Digital Services</div>
+    <div class="name">Déto Jean-Luc<br />Gouaho</div>
+    <div class="role">__ROLE__</div>
+    <div class="services">__SERVICES__</div>
+    <div class="url">__URL__</div>
+  </div>
+</body>
+</html>

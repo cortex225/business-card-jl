@@ -1,24 +1,25 @@
 import { AppData, Language, Translations } from "./types";
 
-// First developer role (Royal Broker Solutions, August 2022).
+// First developer role (Royal Broker Solutions, August 2022). Counted at build
+// time so the prerendered HTML and the client render agree.
 const YEARS = Math.max(
   1,
-  Math.floor((Date.now() - new Date("2022-08-01").getTime()) / (365.25 * 24 * 3600 * 1000)),
+  Math.floor((new Date(__BUILD_DATE__).getTime() - new Date("2022-08-01").getTime()) / (365.25 * 24 * 3600 * 1000)),
 );
 
 export const DATA: AppData = {
   name: "Déto Jean-Luc Gouaho",
   company: "JL Digital Services",
   neq: "2279991246",
-  avatar: "/img/avatar.png",
+  avatar: "/img/avatar-320.webp",
   title: {
     fr: "J'aide les entrepreneurs à vendre plus grâce au web",
     en: "I help entrepreneurs sell more through the web",
   },
   location: "Québec, Canada",
-  email: "jl.gouaho@gmail.com",
-  website: "https://jlgouaho.com",
-  blogUrl: "https://jlgouaho.com/blog",
+  email: "jlgouaho@gmail.com",
+  website: "https://www.jlgouaho.com/fr",
+  blogUrl: "https://www.jlgouaho.com/fr/blog",
   linkedin: "https://linkedin.com/in/jlgouaho/",
   github: "https://github.com/cortex225",
   x: "https://x.com/jlgouaho",
@@ -193,7 +194,7 @@ export const DATA: AppData = {
       },
       {
         q: "Comment vous contacter ou collaborer avec vous ?",
-        a: "Le plus simple : réservez un appel découverte gratuit de 15 minutes via le bouton sur cette carte. Vous pouvez aussi m'écrire à jl.gouaho@gmail.com, sur LinkedIn ou WhatsApp. Je réponds en moins de 48h."
+        a: "Le plus simple : réservez un appel découverte gratuit de 15 minutes via le bouton sur cette carte. Vous pouvez aussi m'écrire à jlgouaho@gmail.com, sur LinkedIn ou WhatsApp. Je réponds en moins de 48h."
       },
       {
         q: "Travaillez-vous avec des clients à l'international ?",
@@ -219,7 +220,7 @@ export const DATA: AppData = {
       },
       {
         q: "How can I reach or work with you?",
-        a: "Easiest: book a free 15-minute discovery call via the button on this card. You can also email me at jl.gouaho@gmail.com, or reach out on LinkedIn or WhatsApp. I respond within 48h."
+        a: "Easiest: book a free 15-minute discovery call via the button on this card. You can also email me at jlgouaho@gmail.com, or reach out on LinkedIn or WhatsApp. I respond within 48h."
       },
       {
         q: "Do you work with international clients?",
@@ -329,6 +330,7 @@ export const T: Record<Language, Translations> = {
     projects: "Réalisations",
     blog: "Mon blog",
     viewProject: "Voir le projet",
+    skipToContent: "Aller au contenu principal",
   },
   en: {
     contact: "Let's talk about your project",
@@ -355,5 +357,6 @@ export const T: Record<Language, Translations> = {
     projects: "Work",
     blog: "My blog",
     viewProject: "View project",
+    skipToContent: "Skip to main content",
   },
 };
