@@ -38,9 +38,17 @@
          are generated per language at build time (seo/head.ts, scripts/prerender.mjs). -->
     <!--app-head-->
 
+    <!-- Font stylesheet loaded without blocking the first paint (display=swap shows the fallback font meanwhile). -->
     <link
+      rel="preload"
+      as="style"
       href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet" />
+      onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" />
+    </noscript>
   </head>
   <body>
     <!-- Prerendered at build time for "/" (fr) and "/en" (en), then hydrated. -->
