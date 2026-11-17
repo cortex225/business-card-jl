@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Decorative glows and blurred shapes reach past the right edge on phones.
+   clip (not hidden) stops horizontal scrolling without breaking position: sticky. */
+html,
+body {
+  overflow-x: clip;
+}
+
       body {
         font-family: "Plus Jakarta Sans", sans-serif;
         margin: 0;
