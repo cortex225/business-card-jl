@@ -14,18 +14,12 @@ export interface ProcessStep {
     desc: string;
 }
 
-export interface Testimonial {
-    name: string;
-    role: string;
-    company?: string;
-    text: string;
-}
-
 export interface Project {
   name: string;
   desc: Record<Language, string>;
   url: string;
   tags: string[];
+  image?: string;
   icon: string;
 }
 
@@ -64,7 +58,6 @@ export interface AppData {
   services: Record<Language, Service[]>;
   about: Record<Language, string>;
   process: Record<Language, ProcessStep[]>;
-  testimonials: Record<Language, Testimonial[]>;
   stats: Record<Language, Stat[]>;
   faq: Record<Language, FaqItem[]>;
   projects: Record<Language, Project[]>;
@@ -83,7 +76,6 @@ export interface Translations {
   close: string;
   about: string;
   ourProcess: string;
-  testimonials: string;
   rights: string;
   wallet: string;
   walletSub: string;

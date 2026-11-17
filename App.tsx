@@ -474,34 +474,46 @@ END:VCARD`;
           </section>
           </Reveal>
 
-          {/* Testimonials */}
-          <section aria-labelledby="testimonials-heading">
-            <h2 id="testimonials-heading" className="text-2xl font-bold text-slate-800 mb-8 ml-4">
-              {T[lang].testimonials}
+          {/* Projects */}
+          <section aria-labelledby="projects-heading">
+            <h2 id="projects-heading" className="text-2xl font-bold text-slate-800 mb-8 ml-4">
+              {T[lang].projects}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {DATA.testimonials[lang].map((t, i) => (
-                <Reveal key={i} delay={i * 100} className="h-full">
-                <figure
-                  data-spotlight
-                  className="bg-white/50 p-6 rounded-3xl border border-white/60 h-full">
-                  <div className="flex gap-1 text-amber-400 mb-3" role="img" aria-label={lang === "fr" ? "5 étoiles sur 5" : "5 out of 5 stars"}>
-                    {[...Array(5)].map((_, k) => (
-                      <span key={k} aria-hidden="true">★</span>
-                    ))}
-                  </div>
-                  <blockquote className="text-slate-700 italic mb-4 text-sm leading-relaxed">
-                    &ldquo;{t.text}&rdquo;
-                  </blockquote>
-                  <figcaption>
-                    <div className="font-bold text-slate-900 text-sm">
-                      {t.name}
+              {DATA.projects[lang].map((project, i) => (
+                <Reveal key={project.name} delay={i * 100} className="h-full">
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-spotlight
+                    className="group flex h-full flex-col overflow-hidden rounded-3xl border border-white bg-white/70 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-indigo-500/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-600">
+                    {project.image && (
+                      <img
+                        src={project.image}
+                        alt=""
+                        loading="lazy"
+                        width={800}
+                        height={500}
+                        className="aspect-[16/10] w-full object-cover object-top"
+                      />
+                    )}
+                    <div className="flex flex-1 flex-col p-5">
+                      <h3 className="mb-1 flex items-center gap-2 font-bold text-slate-900">
+                        {project.name}
+                        <ExternalLink size={14} className="text-slate-400 group-hover:text-indigo-600" aria-hidden="true" />
+                        <span className="sr-only">{lang === "fr" ? "(nouvel onglet)" : "(opens in a new tab)"}</span>
+                      </h3>
+                      <p className="mb-3 text-sm leading-relaxed text-slate-600">{project.desc[lang]}</p>
+                      <div className="mt-auto flex flex-wrap gap-2">
+                        {project.tags.map((tag) => (
+                          <span key={tag} className="rounded-lg border border-slate-100 bg-slate-50 px-2 py-0.5 text-xs font-medium text-slate-600">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
                     </div>
-                    <div className="text-xs text-slate-500">
-                      {t.role}, {t.company}
-                    </div>
-                  </figcaption>
-                </figure>
+                  </a>
                 </Reveal>
               ))}
             </div>

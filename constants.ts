@@ -1,5 +1,11 @@
 import { AppData, Language, Translations } from "./types";
 
+// First developer role (Royal Broker Solutions, August 2022).
+const YEARS = Math.max(
+  1,
+  Math.floor((Date.now() - new Date("2022-08-01").getTime()) / (365.25 * 24 * 3600 * 1000)),
+);
+
 export const DATA: AppData = {
   name: "Déto Jean-Luc Gouaho",
   company: "JL Digital Services",
@@ -28,51 +34,47 @@ export const DATA: AppData = {
     "Stratégie Digitale",
   ],
   about: {
-    fr: "Pas encore de site ? Un site qui ne vous rapporte rien ? Des heures perdues sur des tâches répétitives ? Je vous aide à exister en ligne et à transformer votre présence web en machine à clients. Site vitrine, boutique en ligne ou application sur mesure — vous obtenez enfin un outil qui travaille pour vous 24/7.",
-    en: "No website yet? A site that brings you nothing? Hours wasted on repetitive tasks? I help you exist online and turn your web presence into a client-generating machine. Showcase site, online store, or custom app — you finally get a tool that works for you 24/7.",
+    fr: "Je suis développeur full-stack depuis 2022. Je crée des sites, des boutiques en ligne et des outils sur mesure pour des PME et des travailleurs autonomes, du design à la mise en ligne. Vous traitez directement avec la personne qui écrit le code, et vous gardez la propriété de votre site et de vos comptes.",
+    en: "I've been a full-stack developer since 2022. I build websites, online stores and custom tools for small businesses and freelancers, from design to launch. You deal directly with the person who writes the code, and you keep ownership of your site and accounts.",
   },
   services: {
     fr: [
       {
-        name: "Présence en Ligne Qui Convertit",
-        desc: "Votre site doit être votre meilleur vendeur, pas une simple brochure. Je crée des sites professionnels qui rassurent vos visiteurs et les transforment en clients. Visible sur Google, rapide, et pensé pour générer des contacts.",
-        features: ["Trouvable sur Google", "Génère des appels", "Design pro"],
+        name: "Site vitrine",
+        desc: "Un site rapide, clair sur ce que vous faites et facile à trouver sur Google, avec un bouton d'appel ou de prise de rendez-vous bien visible. Exemples : l'Hôpital Vétérinaire Dufferin et le site de Marie-Antoine Aka.",
+        features: ["Référencement local", "Mobile d'abord", "Formulaire ou prise de RDV"],
         icon: "Globe",
       },
       {
-        name: "Boutique en Ligne Clé en Main",
-        desc: "Vendez vos produits pendant que vous dormez. Je configure votre boutique de A à Z : catalogue produits, paiements sécurisés, livraison automatisée. Vous recevez les commandes, je m'occupe du reste technique.",
-        features: ["Ventes 24h/24", "Paiements sécurisés", "Simple à gérer"],
+        name: "Boutique en ligne",
+        desc: "Catalogue, paiement, taxes et livraison configurés sur Shopify, WooCommerce ou Stripe selon votre volume. Je vous montre comment ajouter vos produits et traiter une commande vous-même.",
+        features: ["Paiement Stripe ou Shopify", "Taxes du Québec", "Formation incluse"],
         icon: "ShoppingBag",
       },
       {
-        name: "Automatisation & Gain de Temps",
-        desc: "Combien d'heures perdez-vous sur des tâches répétitives ? Envoi de factures, relances clients, rapports... J'automatise ce qui vous fait perdre du temps pour que vous puissiez vous concentrer sur votre métier.",
-        features: [
-          "Zéro tâche manuelle",
-          "Moins d'erreurs",
-          "+10h/semaine gagnées",
-        ],
+        name: "Automatisation et outils sur mesure",
+        desc: "Factures, relances, rapports ou tri de candidatures : je relie vos outils entre eux (n8n, Make, API) ou je construis l'outil qui manque. Chez Royal Broker, j'ai par exemple écrit un tri automatique de CV en Python.",
+        features: ["Intégrations API", "n8n et Make", "Outils internes"],
         icon: "Workflow",
       },
     ],
     en: [
       {
-        name: "Online Presence That Converts",
-        desc: "Your website should be your best salesperson, not just a brochure. I create professional sites that build trust and turn visitors into customers. Visible on Google, fast, and designed to generate leads.",
-        features: ["Found on Google", "Generates calls", "Pro design"],
+        name: "Business website",
+        desc: "A fast site that says clearly what you do and is easy to find on Google, with a visible call or booking button. Examples: Hôpital Vétérinaire Dufferin and Marie-Antoine Aka's site.",
+        features: ["Local SEO", "Mobile first", "Contact form or booking"],
         icon: "Globe",
       },
       {
-        name: "Turnkey Online Store",
-        desc: "Sell your products while you sleep. I set up your store from A to Z: product catalog, secure payments, automated shipping. You receive orders, I handle the technical stuff.",
-        features: ["24/7 sales", "Secure payments", "Easy to manage"],
+        name: "Online store",
+        desc: "Catalog, payments, taxes and shipping set up on Shopify, WooCommerce or Stripe depending on your volume. I show you how to add products and handle an order yourself.",
+        features: ["Stripe or Shopify payments", "Quebec sales taxes", "Training included"],
         icon: "ShoppingBag",
       },
       {
-        name: "Automation & Time Savings",
-        desc: "How many hours do you waste on repetitive tasks? Invoicing, client follow-ups, reports... I automate what's eating your time so you can focus on your actual business.",
-        features: ["Zero manual tasks", "Fewer errors", "+10h/week saved"],
+        name: "Automation and custom tools",
+        desc: "Invoices, follow-ups, reports or resume screening: I connect your tools (n8n, Make, APIs) or build the one that's missing. At Royal Broker, for example, I wrote an automated resume screener in Python.",
+        features: ["API integrations", "n8n and Make", "Internal tools"],
         icon: "Workflow",
       },
     ],
@@ -81,23 +83,23 @@ export const DATA: AppData = {
     fr: [
       {
         step: "01",
-        title: "Appel Découverte",
+        title: "Appel découverte",
         desc: "15 min pour comprendre votre business, vos défis et vos objectifs. Sans engagement.",
       },
       {
         step: "02",
-        title: "Proposition Sur Mesure",
-        desc: "Je vous présente une solution adaptée à VOS besoins, avec un prix clair et sans surprise.",
+        title: "Proposition sur mesure",
+        desc: "Je vous envoie une proposition écrite avec le périmètre, le prix et le délai.",
       },
       {
         step: "03",
-        title: "Création & Validation",
-        desc: "Je construis, vous validez à chaque étape. Aucune mauvaise surprise à la livraison.",
+        title: "Création et validation",
+        desc: "Je construis par étapes et vous validez chacune sur un lien de prévisualisation.",
       },
       {
         step: "04",
-        title: "Lancement & Croissance",
-        desc: "Votre site est en ligne. Je vous forme et reste disponible pour vous aider à grandir.",
+        title: "Mise en ligne et suivi",
+        desc: "Le site est en ligne sur votre domaine, je vous montre comment le mettre à jour et je reste joignable pour les corrections.",
       },
     ],
     en: [
@@ -109,61 +111,31 @@ export const DATA: AppData = {
       {
         step: "02",
         title: "Custom Proposal",
-        desc: "I present a solution tailored to YOUR needs, with clear pricing and no surprises.",
+        desc: "I send a written proposal with the scope, price and timeline.",
       },
       {
         step: "03",
         title: "Build & Validate",
-        desc: "I build, you validate at each step. No bad surprises at delivery.",
+        desc: "I build in stages and you approve each one on a preview link.",
       },
       {
         step: "04",
-        title: "Launch & Growth",
-        desc: "Your site is live. I train you and stay available to help you grow.",
-      },
-    ],
-  },
-  testimonials: {
-    fr: [
-      {
-        name: "Sophie M.",
-        role: "Propriétaire",
-        company: "Boutique Mode QC",
-        text: "Avant, mon site ne générait aucun appel. Maintenant je reçois 3-4 demandes par semaine. Jean-Luc a tout changé !",
-      },
-      {
-        name: "Marc D.",
-        role: "Entrepreneur",
-        company: "Services Pro",
-        text: "Je passais 10h par semaine sur la facturation. Maintenant c'est automatique. J'aurais dû le faire avant !",
-      },
-    ],
-    en: [
-      {
-        name: "Sophie M.",
-        role: "Owner",
-        company: "Fashion Boutique QC",
-        text: "Before, my site generated zero calls. Now I get 3-4 inquiries per week. Jean-Luc changed everything!",
-      },
-      {
-        name: "Marc D.",
-        role: "Entrepreneur",
-        company: "Pro Services",
-        text: "I used to spend 10h a week on invoicing. Now it's automatic. I should have done this sooner!",
+        title: "Launch and follow-up",
+        desc: "The site goes live on your domain, I show you how to update it and stay reachable for fixes.",
       },
     ],
   },
   stats: {
     fr: [
-      { value: "5+", label: "Années d'expérience" },
-      { value: "20+", label: "Projets livrés" },
-      { value: "100%", label: "Clients satisfaits" },
-      { value: "48h", label: "Temps de réponse" },
+      { value: `${YEARS}+`, label: "Ans de développement" },
+      { value: "10+", label: "Projets en ligne" },
+      { value: "-78%", label: "Coûts cloud réduits (Royal Broker)" },
+      { value: "48h", label: "Délai de réponse" },
     ],
     en: [
-      { value: "5+", label: "Years of experience" },
-      { value: "20+", label: "Projects delivered" },
-      { value: "100%", label: "Satisfied clients" },
+      { value: `${YEARS}+`, label: "Years of development" },
+      { value: "10+", label: "Projects live" },
+      { value: "-78%", label: "Cloud costs cut (Royal Broker)" },
       { value: "48h", label: "Response time" },
     ],
   },
@@ -209,11 +181,11 @@ export const DATA: AppData = {
     fr: [
       {
         q: "Qui est Déto Jean-Luc Gouaho ?",
-        a: "Je suis un développeur web freelance basé à Granby, Québec. Je crée des sites, des apps et des automatisations pour les entrepreneurs et PME depuis 5+ ans. J'ai aussi lancé plusieurs projets SaaS comme RecruitEasy.ca. Mon objectif : vous aider à vendre plus grâce au web, sans jargon."
+        a: "Je suis développeur web à Granby, au Québec, et je travaille comme développeur full-stack depuis 2022. Sous JL Digital Services, je crée des sites, des boutiques et des automatisations pour des PME et des travailleurs autonomes. J'ai aussi lancé des projets comme RecruitEasy.ca et LeadMapper."
       },
       {
         q: "Qu'avez-vous déjà réalisé ?",
-        a: "J'ai livré plus de 20 projets : sites vitrines, boutiques en ligne, apps web, automatisations d'entreprise. Vous pouvez voir toutes mes réalisations sur mon portfolio à jlgouaho.com."
+        a: "Des sites clients comme l'Hôpital Vétérinaire Dufferin et le site de Marie-Antoine Aka, et des applications comme LeadMapper, PlayerConnect ou Budget Buddy. Plus d'une dizaine sont en ligne ; la liste complète est sur jlgouaho.com."
       },
       {
         q: "Cette carte de visite, c'est quoi exactement ?",
@@ -225,21 +197,21 @@ export const DATA: AppData = {
       },
       {
         q: "Travaillez-vous avec des clients à l'international ?",
-        a: "Oui ! Je travaille à distance avec des clients au Québec, au Canada, en France et aux États-Unis. Je suis bilingue français/anglais et je m'adapte à votre fuseau horaire."
+        a: "Oui. Je travaille à distance, en français ou en anglais, par appel vidéo et outils partagés."
       },
       {
         q: "Pourquoi JL Digital Services est-elle enregistrée au Québec ?",
-        a: "Parce que je prends mon métier au sérieux. Mon entreprise est enregistrée au Registraire des entreprises du Québec sous le NEQ 2279991246. Vous avez un contrat clair, des factures officielles et une assurance professionnelle."
+        a: "Mon entreprise est enregistrée au Registraire des entreprises du Québec sous le NEQ 2279991246. Chaque projet a un contrat écrit et des factures officielles."
       }
     ],
     en: [
       {
         q: "Who is Déto Jean-Luc Gouaho?",
-        a: "I'm a freelance web developer based in Granby, Quebec. I've been building websites, apps, and automations for entrepreneurs and SMBs for 5+ years. I also launched several SaaS projects like RecruitEasy.ca. My goal: help you sell more through the web, no jargon."
+        a: "I'm a web developer based in Granby, Quebec, working as a full-stack developer since 2022. Under JL Digital Services, I build websites, stores and automations for small businesses and freelancers. I've also launched projects like RecruitEasy.ca and LeadMapper."
       },
       {
         q: "What have you already built?",
-        a: "I've delivered 20+ projects: showcase sites, online stores, web apps, business automations. You can see all my work on my portfolio at jlgouaho.com."
+        a: "Client sites like Hôpital Vétérinaire Dufferin and Marie-Antoine Aka's site, and apps like LeadMapper, PlayerConnect and Budget Buddy. More than ten are live; the full list is on jlgouaho.com."
       },
       {
         q: "What is this digital card exactly?",
@@ -251,120 +223,84 @@ export const DATA: AppData = {
       },
       {
         q: "Do you work with international clients?",
-        a: "Yes! I work remotely with clients across Quebec, Canada, France, and the United States. I'm bilingual French/English and adapt to your timezone."
+        a: "Yes. I work remotely, in French or English, over video calls and shared tools."
       },
       {
         q: "Why is JL Digital Services registered in Quebec?",
-        a: "Because I take my work seriously. My business is registered with the Quebec Enterprise Register under NEQ 2279991246. You get a clear contract, official invoices, and professional insurance."
+        a: "My business is registered with the Quebec Enterprise Register under NEQ 2279991246. Every project comes with a written contract and official invoices."
       }
     ]
   },
   projects: {
     fr: [
       {
-        name: "RecruitEasy.ca",
-        desc: {
-          fr: "Plateforme SaaS de recrutement qui automatise la publication d'offres d'emploi et la présélection de candidats pour les PME canadiennes.",
-          en: "SaaS recruitment platform that automates job posting and candidate screening for Canadian SMBs."
-        },
-        url: "https://recruiteasy.ca",
-        tags: ["Next.js", "React", "Node.js", "PostgreSQL"],
+        name: 'Marie-Antoine Aka',
+        desc: { fr: "Site d'une cheffe privée et créatrice à Montréal : onze pages prérendues, rapides et bien référencées, sans serveur à maintenir.", en: 'Site for a private chef and creator in Montreal: eleven prerendered pages, fast and well indexed, with no server to maintain.' },
+        url: "https://marie-antoine.jlgouaho.com",
+        tags: ['React', 'Vite', 'SEO'],
+        image: "/img/projects/marie-antoine.jpg",
         icon: "Globe"
       },
       {
-        name: "JL-Fit AI",
-        desc: {
-          fr: "Application de coaching fitness intelligente avec plans d'entraînement personnalisés générés par IA, suivi de progression et recommandations nutritionnelles.",
-          en: "AI-powered fitness coaching app with personalized workout plans, progress tracking, and nutrition recommendations."
-        },
-        url: "#",
-        tags: ["React", "TypeScript", "AI", "PWA"],
-        icon: "TrendingUp"
+        name: 'Hôpital Vétérinaire Dufferin',
+        desc: { fr: "Refonte du site d'une clinique vétérinaire : services, équipe, galerie et prise de rendez-vous.", en: "Redesign of a veterinary clinic's site: services, team, gallery and appointment booking." },
+        url: "https://hvd.jlgouaho.com",
+        tags: ['React', 'TypeScript', 'Tailwind'],
+        image: "/img/projects/hvd.jpg",
+        icon: "Globe"
       },
       {
-        name: "playerConnect",
-        desc: {
-          fr: "Plateforme sociale de mise en relation pour joueurs et créateurs de contenu gaming, avec matchmaking par centres d'intérêt et intégration Discord.",
-          en: "Social matchmaking platform for gamers and content creators, with interest-based matching and Discord integration."
-        },
-        url: "#",
-        tags: ["Next.js", "Supabase", "Discord API"],
-        icon: "Code"
+        name: 'LeadMapper',
+        desc: { fr: 'Outil de prospection qui repère sur Google Maps les commerces sans site web et les note sur 100.', en: 'Prospecting tool that finds local businesses without a website on Google Maps and scores them out of 100.' },
+        url: "https://lead-mapper.jlgouaho.com",
+        tags: ['React', 'Google Places', 'Leaflet'],
+        image: "/img/projects/leadmapper.jpg",
+        icon: "Globe"
       },
       {
-        name: "instaHR",
-        desc: {
-          fr: "Outil RH intelligent qui automatise la publication multicanal d'offres d'emploi, le tri des candidatures et la planification d'entretiens.",
-          en: "Smart HR tool that automates multi-channel job posting, applicant sorting, and interview scheduling."
-        },
-        url: "#",
-        tags: ["React", "n8n", "Make", "API"],
-        icon: "Cpu"
-      },
-      {
-        name: "masecurite",
-        desc: {
-          fr: "Application mobile de gestion de sécurité pour DGROUP CI, avec signalement d'incidents, géolocalisation et tableaux de bord en temps réel.",
-          en: "Mobile security management app for DGROUP CI, with incident reporting, geolocation, and real-time dashboards."
-        },
-        url: "#",
-        tags: ["React Native", ".NET", "Azure"],
-        icon: "ShieldCheck"
+        name: 'Akwaba',
+        desc: { fr: "Site immersif sur la Côte d'Ivoire, avec une carte 3D qui guide un voyage en cinq régions.", en: "Immersive site about Côte d'Ivoire, with a 3D map guiding a journey through five regions." },
+        url: "https://akwaba.jlgouaho.com",
+        tags: ['Three.js', 'GSAP', 'Vite'],
+        image: "/img/projects/akwaba.jpg",
+        icon: "Globe"
       }
     ],
     en: [
       {
-        name: "RecruitEasy.ca",
-        desc: {
-          fr: "Plateforme SaaS de recrutement qui automatise la publication d'offres d'emploi et la présélection de candidats pour les PME canadiennes.",
-          en: "SaaS recruitment platform that automates job posting and candidate screening for Canadian SMBs."
-        },
-        url: "https://recruiteasy.ca",
-        tags: ["Next.js", "React", "Node.js", "PostgreSQL"],
+        name: 'Marie-Antoine Aka',
+        desc: { fr: "Site d'une cheffe privée et créatrice à Montréal : onze pages prérendues, rapides et bien référencées, sans serveur à maintenir.", en: 'Site for a private chef and creator in Montreal: eleven prerendered pages, fast and well indexed, with no server to maintain.' },
+        url: "https://marie-antoine.jlgouaho.com",
+        tags: ['React', 'Vite', 'SEO'],
+        image: "/img/projects/marie-antoine.jpg",
         icon: "Globe"
       },
       {
-        name: "JL-Fit AI",
-        desc: {
-          fr: "Application de coaching fitness intelligente avec plans d'entraînement personnalisés générés par IA, suivi de progression et recommandations nutritionnelles.",
-          en: "AI-powered fitness coaching app with personalized workout plans, progress tracking, and nutrition recommendations."
-        },
-        url: "#",
-        tags: ["React", "TypeScript", "AI", "PWA"],
-        icon: "TrendingUp"
+        name: 'Hôpital Vétérinaire Dufferin',
+        desc: { fr: "Refonte du site d'une clinique vétérinaire : services, équipe, galerie et prise de rendez-vous.", en: "Redesign of a veterinary clinic's site: services, team, gallery and appointment booking." },
+        url: "https://hvd.jlgouaho.com",
+        tags: ['React', 'TypeScript', 'Tailwind'],
+        image: "/img/projects/hvd.jpg",
+        icon: "Globe"
       },
       {
-        name: "playerConnect",
-        desc: {
-          fr: "Plateforme sociale de mise en relation pour joueurs et créateurs de contenu gaming, avec matchmaking par centres d'intérêt et intégration Discord.",
-          en: "Social matchmaking platform for gamers and content creators, with interest-based matching and Discord integration."
-        },
-        url: "#",
-        tags: ["Next.js", "Supabase", "Discord API"],
-        icon: "Code"
+        name: 'LeadMapper',
+        desc: { fr: 'Outil de prospection qui repère sur Google Maps les commerces sans site web et les note sur 100.', en: 'Prospecting tool that finds local businesses without a website on Google Maps and scores them out of 100.' },
+        url: "https://lead-mapper.jlgouaho.com",
+        tags: ['React', 'Google Places', 'Leaflet'],
+        image: "/img/projects/leadmapper.jpg",
+        icon: "Globe"
       },
       {
-        name: "instaHR",
-        desc: {
-          fr: "Outil RH intelligent qui automatise la publication multicanal d'offres d'emploi, le tri des candidatures et la planification d'entretiens.",
-          en: "Smart HR tool that automates multi-channel job posting, applicant sorting, and interview scheduling."
-        },
-        url: "#",
-        tags: ["React", "n8n", "Make", "API"],
-        icon: "Cpu"
-      },
-      {
-        name: "masecurite",
-        desc: {
-          fr: "Application mobile de gestion de sécurité pour DGROUP CI, avec signalement d'incidents, géolocalisation et tableaux de bord en temps réel.",
-          en: "Mobile security management app for DGROUP CI, with incident reporting, geolocation, and real-time dashboards."
-        },
-        url: "#",
-        tags: ["React Native", ".NET", "Azure"],
-        icon: "ShieldCheck"
+        name: 'Akwaba',
+        desc: { fr: "Site immersif sur la Côte d'Ivoire, avec une carte 3D qui guide un voyage en cinq régions.", en: "Immersive site about Côte d'Ivoire, with a 3D map guiding a journey through five regions." },
+        url: "https://akwaba.jlgouaho.com",
+        tags: ['Three.js', 'GSAP', 'Vite'],
+        image: "/img/projects/akwaba.jpg",
+        icon: "Globe"
       }
-    ]
-  },
+    ],
+  }
 };
 
 export const T: Record<Language, Translations> = {
@@ -373,14 +309,13 @@ export const T: Record<Language, Translations> = {
     book: "Appel gratuit de 15 min",
     save: "Garder mon contact",
     portfolio: "Voir mes réalisations",
-    services: "Ce que je fais pour vous",
-    openToWork: "DISPONIBLE CETTE SEMAINE",
+    services: "Ce que je fais",
+    openToWork: "OUVERT AUX NOUVEAUX PROJETS",
     share: "Partager",
     scan: "Scannez pour me contacter",
     close: "Fermer",
     about: "Mon approche",
     ourProcess: "Comment ça se passe",
-    testimonials: "Ils m'ont fait confiance",
     rights: "Tous droits réservés.",
     wallet: "Ajouter au téléphone",
     walletSub: "Toujours à portée de main",
@@ -391,7 +326,7 @@ export const T: Record<Language, Translations> = {
     faq: "Questions fréquentes",
     trustNeq: "Entreprise enregistrée",
     startingAt: "à partir de",
-    projects: "Mes réalisations",
+    projects: "Réalisations",
     blog: "Mon blog",
     viewProject: "Voir le projet",
   },
@@ -401,13 +336,12 @@ export const T: Record<Language, Translations> = {
     save: "Keep my contact",
     portfolio: "See my work",
     services: "What I do for you",
-    openToWork: "AVAILABLE THIS WEEK",
+    openToWork: "OPEN TO NEW PROJECTS",
     share: "Share",
     scan: "Scan to contact me",
     close: "Close",
     about: "My approach",
     ourProcess: "How it works",
-    testimonials: "They trusted me",
     rights: "All rights reserved.",
     wallet: "Add to phone",
     walletSub: "Always at hand",
@@ -418,7 +352,7 @@ export const T: Record<Language, Translations> = {
     faq: "Frequently asked questions",
     trustNeq: "Registered business",
     startingAt: "starting at",
-    projects: "My projects",
+    projects: "Work",
     blog: "My blog",
     viewProject: "View project",
   },
